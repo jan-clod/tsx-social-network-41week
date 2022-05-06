@@ -1,0 +1,30 @@
+.app-wrapper {
+  width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-areas: "h h" 
+                       "n c"
+                       "q c";
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 10fr;
+  /* grid-gap: 10px */
+  box-shadow: 10px 5px 27px rgb(197, 197, 197);
+
+}
+
+.app-wrapper .app-wrapper-content {
+  grid-area: c;
+  background-color: rgb(255, 255, 255);
+}
+
+.root {
+  background-color: rgb(62, 87, 109);
+}
+a{
+  text-decoration: none;
+}
+.active {
+  color: rgb(19, 14, 14);
+/*    font-family:cursive; */
+  text-shadow: 2px 2px 3px rgb(113, 131, 156);
+}

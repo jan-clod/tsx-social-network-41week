@@ -1,0 +1,16 @@
+.descriptionBlock {
+    padding: 10px;
+    color: rgb(146, 88, 88);
+    font-size: 19px;
+}
+
+  
+  .imgPack  img {
+    width: 350px;
+    border-radius: 10px;
+  }
+
+
+  .profInfoBlock {
+    padding: 10px;
+  }

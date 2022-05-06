@@ -1,0 +1,35 @@
+.nav {
+    margin: 10px;
+
+}
+
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    z-index: 99;
+}
+
+.dialogs .message {
+    background-color: rgb(241, 241, 241);
+    border: 1px solid rgb(241, 241, 241);
+    border-radius: 10px;
+    margin: 10px;
+    padding: 5px;
+    max-width: max-content;
+    
+}
+
+.dialogsItems {
+    padding: 20px;
+    background-color: rgb(238, 243, 246);
+    -webkit-box-shadow: 1px 0px 8px -3px rgba(190, 190, 190, 0.75);
+    -moz-box-shadow:    5px 0px 8px -3px rgba(190, 190, 190, 0.75);
+    box-shadow:         5px 0px 8px -3px rgba(190, 190, 190, 0.75);
+}
+
+.dialogsItems .activ {
+    color: aqua;
+}
+
+.messages {
+}
