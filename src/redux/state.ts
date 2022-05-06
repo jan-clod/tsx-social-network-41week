@@ -37,8 +37,6 @@ export type storeType = {
   _state: StateType;
   getState: () => StateType;
   onChange: () => void;
-  /*   addPost: () => void;*/
-  /* updateNewPostText: (text: string) => void */
   subscribe: (callback: any) => void;
   dispatch: (action: ActionTypes) => void;
 };
