@@ -28,11 +28,6 @@ export type StateType = {
   profilePage: ProfilePageType;
   dialogsPage: dialogsPageType;
 };
-export type ActionTypes =
-  | ReturnType<typeof addPostAC>
-  | ReturnType<typeof UpdateNewMessageAC>
-  | ReturnType<typeof UpdateNewPostAC>
-  | ReturnType<typeof SendMessageAC>;
 export type storeType = {
   _state: StateType;
   getState: () => StateType;
@@ -40,8 +35,14 @@ export type storeType = {
   subscribe: (callback: any) => void;
   dispatch: (action: ActionTypes) => void;
 };
+export type ActionTypes =
+  | ReturnType<typeof addPostAC>
+  | ReturnType<typeof UpdateNewMessageAC>
+  | ReturnType<typeof UpdateNewPostAC>
+  | ReturnType<typeof SendMessageAC>;
 
-export let store: storeType = {
+
+let store: storeType = {
   _state: {
     profilePage: {
       postsData: [

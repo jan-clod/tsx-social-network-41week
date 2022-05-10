@@ -12,5 +12,6 @@ code {
     monospace;
 }
 :root{
-  background-color: rgb(237, 246, 245);
+  padding: 10px;
+  background-color: rgb(33, 33, 33);
 }

@@ -1,19 +1,21 @@
 .nav{
     grid-area: n;
-    background-color: rgb(205, 218, 213);
-    -webkit-box-shadow: 1px 0px 8px -3px rgba(190, 190, 190, 0.75);
+    background-color: rgb(42, 42, 42);
+/*     -webkit-box-shadow: 1px 0px 8px -3px rgba(190, 190, 190, 0.75);
     -moz-box-shadow: 5px 0px 8px -3px rgba(190, 190, 190, 0.75);
-    box-shadow: 9px 0px 8px -3px rgba(190, 190, 190, 0.75);
+    box-shadow: 9px 0px 8px -3px rgba(190, 190, 190, 0.75); */
     z-index: 100;
     position: relative;
+    margin-top:5px;
   
   }
   .item a {
-    color: rgb(255, 255, 255);
+    color: rgb(232, 232, 232);
     font-size: 23px;
     margin-left: 10px;
     text-decoration: none;
   }
+
   .itemS {
     color: rgb(26, 172, 123);
     /* font-weight: bold; // жирный шрифт */
@@ -22,3 +24,4 @@
     bottom: 0;
     margin: 7px;
   }
+  

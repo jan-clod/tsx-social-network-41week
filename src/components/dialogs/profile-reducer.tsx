@@ -1,7 +1,16 @@
-import {v1} from "uuid";
+import { v1 } from "uuid";
 import { ActionTypes, ProfilePageType } from '../../redux/state';
 
-export const PostReducer = (profilePage:ProfilePageType, action: ActionTypes ) => {
+let initialState = { //вначале в profilepage будет undefined, нужно прописать начальное значение  
+    postsData: [
+        { id: v1(), message: "Hi how are you", LikesCount: 163 },
+        { id: v1(), message: "Its my Life", LikesCount: 83 },
+        { id: v1(), message: "HaveAreYou", LikesCount: 1 },
+    ],
+    newPostText: " ",
+}
+
+export const PostReducer = (profilePage : ProfilePageType = initialState, action: ActionTypes) => {
     switch (action.type) {
         case "ADD-POST":
             const newPost = {
@@ -12,19 +21,19 @@ export const PostReducer = (profilePage:ProfilePageType, action: ActionTypes ) =
             profilePage.postsData.unshift(newPost)
             profilePage.newPostText = '';
             return profilePage;
-        case "UPDATE-NEW-TEXT" :
+        case "UPDATE-NEW-TEXT":
             profilePage.newPostText = action.newText
             return profilePage
         default:
             return profilePage;
     }
 };
-export const addPostAC =() => {
+export const addPostAC = () => {
     return {
         type: "ADD-POST"
     } as const //воспринимать объект как константу
 }
-export const UpdateNewMessageAC =(newText:string) => {
+export const UpdateNewMessageAC = (newText: string) => {
     return {
         type: "UPDATE-NEW-TEXT",
         newText: newText

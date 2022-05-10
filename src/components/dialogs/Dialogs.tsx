@@ -4,6 +4,12 @@ import { SendMessageAC, UpdateNewPostAC } from "./dialogs-reducer";
 import s from "./Dialogs.module.css";
 import DialogsItem from "./DialogsItem/DialogsItem";
 import MessagesItem from "./Message/Message";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+import SendIcon from '@mui/icons-material/Send';
+import Stack from '@mui/material/Stack';
 
 type DialogsType = {
   id: string
@@ -43,12 +49,29 @@ export const Dialogs = (props: PropsType) => {
       <div className={s.messages}>
         <div>{messegessElements} </div>
         <div>
-          <div><textarea
-            placeholder="please"
-            value={newMessageBody}
-            onChange={onNewMessageChange}
-          /></div>
-          <div><button onClick={onSendMessageClick}>Commit</button></div>
+          <div className={s.myMessag}>
+
+            <Box sx={{ width: 700, maxWidth: '100%', }}>
+              <TextField
+                fullWidth
+                label="pull message"
+                id="fullWidth"
+                placeholder="please"
+                value={newMessageBody}
+                onChange={onNewMessageChange}
+              />
+            </Box>
+            <div>
+              <Stack direction="row" spacing={2}>
+                <Button
+                  variant="contained"
+                  endIcon={<SendIcon />}
+                  onClick={onSendMessageClick}
+                > Send</Button>
+              </Stack>
+            </div>
+          </div>
+
         </div>
       </div>
     </nav>
