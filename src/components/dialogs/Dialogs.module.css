@@ -11,7 +11,6 @@
     margin: 10px 20px;
     padding: 5px;
     max-width: max-content;
-    
 }
 
 .myMessag {
@@ -25,7 +24,6 @@
 }
 
 .dialogsItems {
-    /* padding: 20px; */
     min-width: 170px;
     border-right: 1px solid rgb(36, 36, 36);
 }

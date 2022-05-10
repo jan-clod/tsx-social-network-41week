@@ -7,14 +7,8 @@ import MessagesItem from "./Message/Message";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
 import Stack from '@mui/material/Stack';
-import CommentIcon from '@mui/icons-material/Comment';
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
-import NewspaperIcon from '@mui/icons-material/Newspaper';
-import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
-import SettingsIcon from '@mui/icons-material/Settings';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 
@@ -41,7 +35,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export const Dialogs = (props: PropsType) => {
   let dialogsElements =
     props.dialogsData.map(d =>
-      <Box sx={{ width: '100%' }}>
+      <Box sx={{ minWidth: '100%' }}>
         <Stack spacing={2}>
           <Item>
             <DialogsItem key={d.id} name={d.name} />
@@ -69,7 +63,7 @@ export const Dialogs = (props: PropsType) => {
         <div>
           <div className={s.myMessag}>
 
-            <Box sx={{ width: 700, maxWidth: '100%', }}>
+            <Box sx={{ width: '80%', maxWidth: '100%', }}>
               <TextField
                 fullWidth
                 label="pull message"
