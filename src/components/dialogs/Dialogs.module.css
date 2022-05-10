@@ -1,5 +1,6 @@
 .dialogs {
     display: grid;
+    grid-template-areas: "a b";
     grid-template-columns: 2fr 10fr;
     z-index: 99;
 }
@@ -20,12 +21,14 @@
 }
 
 .dialogs .messages {
-    background-color: rgba(244, 0, 0, 0);
+    background-color: rgb(44, 44, 44);
 }
 
 .dialogsItems {
     min-width: 170px;
     border-right: 1px solid rgb(36, 36, 36);
+    grid-area: a;
+    margin-right: 15px;
 }
 
 .dialogsItems a {
