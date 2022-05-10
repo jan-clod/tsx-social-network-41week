@@ -59,7 +59,9 @@ export const Dialogs = (props: PropsType) => {
         {dialogsElements}
       </div>
       <div className={s.messages}>
-        <div>{messegessElements} </div>
+        <div className={s.blockMessage}>
+          {messegessElements}
+        </div>
         <div>
           <div className={s.myMessag}>
 
