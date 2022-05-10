@@ -10,6 +10,13 @@ import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
 import Stack from '@mui/material/Stack';
+import CommentIcon from '@mui/icons-material/Comment';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import NewspaperIcon from '@mui/icons-material/Newspaper';
+import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
+import SettingsIcon from '@mui/icons-material/Settings';
+import Paper from '@mui/material/Paper';
+import { styled } from '@mui/material/styles';
 
 type DialogsType = {
   id: string
@@ -25,11 +32,22 @@ type PropsType = {
   newMessageBody: string
   dispatch: (action: ActionTypes) => void
 }
-
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: 'rgb(42, 42, 42)',
+  padding: theme.spacing(2),
+  textAlign: 'left',
+}));
 
 export const Dialogs = (props: PropsType) => {
   let dialogsElements =
-    props.dialogsData.map(d => <DialogsItem key={d.id} name={d.name} />)
+    props.dialogsData.map(d =>
+      <Box sx={{ width: '100%' }}>
+        <Stack spacing={2}>
+          <Item>
+            <DialogsItem key={d.id} name={d.name} />
+          </Item>
+        </Stack>
+      </Box>)
   let messegessElements =
     props.messageData.map(m => <MessagesItem key={m.id} message={m.message} />)
   let newMessageBody = props.newMessageBody

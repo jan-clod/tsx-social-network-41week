@@ -7,14 +7,18 @@
                        "q c";
   grid-template-rows: 60px 1fr;
   grid-template-columns: 2fr 10fr;
-  /* grid-gap: 10px */
-  box-shadow: 10px -15px 10px rgb(24, 24, 24);
+
+  
 
 }
 
 .app-wrapper .app-wrapper-content {
   grid-area: c;
   background-color: rgb(45, 44, 44);
+  margin:15px 30px 15px 0px;
+  border-radius: 5px;
+  box-shadow: 10px -15px 10px rgb(24, 24, 24);
+
 }
 
 .root {
@@ -24,7 +28,7 @@ a{
   text-decoration: none;
 }
 .active {
-  text-shadow: 2px 2px 3px rgb(113, 131, 156);
+  text-shadow: 2px 2px 3px rgb(0, 0, 0);
   border-right: 7px solid rgb(56, 99, 255);
 
 }

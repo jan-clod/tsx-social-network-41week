@@ -2,13 +2,12 @@
     display: grid;
     grid-template-columns: 2fr 10fr;
     z-index: 99;
-    background-color: rgb(62, 62, 62);
 }
 
 .dialogs .message {
     background-color: rgb(183, 183, 183);
     border: 1px solid rgb(150, 150, 150);
-    border-radius: 10px;
+    border-radius: 10px 10px 10px 0px;
     margin: 10px 20px;
     padding: 5px;
     max-width: max-content;
@@ -18,33 +17,22 @@
 .myMessag {
     background-color: rgb(77, 77, 77);
     padding: 10px 10px; 
+    border-radius: 0px 0px 5px 0px;
 }
 
 .dialogs .messages {
-    background-color: rgb(62, 62, 62);
+    background-color: rgba(244, 0, 0, 0);
 }
 
 .dialogsItems {
-    padding: 20px;
+    /* padding: 20px; */
     min-width: 170px;
-    background-color: rgb(62, 62, 62);
-    -webkit-box-shadow: 1px 0px 8px -3px rgba(190, 190, 190, 0.75);
-    -moz-box-shadow:    5px 0px 8px -3px rgba(190, 190, 190, 0.75);
-    box-shadow:         5px 0px 8px -3px rgba(30, 30, 30, 0.75);
     border-right: 1px solid rgb(36, 36, 36);
-
 }
 
 .dialogsItems a {
     color: rgb(214, 214, 214);
-
-
 }
 
-.dialogsItems .activ {
-    color: rgb(0, 197, 197);
-    border-right: 1px solid rgb(255, 4, 4);
 
-
-}
 
