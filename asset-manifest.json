@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/tsx-social-network-41week/static/css/main.69765c6a.css",
-    "main.js": "/tsx-social-network-41week/static/js/main.0156da30.js",
+    "main.css": "/tsx-social-network-41week/static/css/main.564eb639.css",
+    "main.js": "/tsx-social-network-41week/static/js/main.0968a63d.js",
     "index.html": "/tsx-social-network-41week/index.html",
-    "main.69765c6a.css.map": "/tsx-social-network-41week/static/css/main.69765c6a.css.map",
-    "main.0156da30.js.map": "/tsx-social-network-41week/static/js/main.0156da30.js.map"
+    "main.564eb639.css.map": "/tsx-social-network-41week/static/css/main.564eb639.css.map",
+    "main.0968a63d.js.map": "/tsx-social-network-41week/static/js/main.0968a63d.js.map"
   },
   "entrypoints": [
-    "static/css/main.69765c6a.css",
-    "static/js/main.0156da30.js"
+    "static/css/main.564eb639.css",
+    "static/js/main.0968a63d.js"
   ]
 }
