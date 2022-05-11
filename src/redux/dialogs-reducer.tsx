@@ -13,8 +13,8 @@ let initialState: dialogsPageType = {
     ],
     messagesData: [
         { id: v1(),  message: [{ id: v1(), message: "Hi" }] , sender: 'You'},
-        { id: v1(),  message: [{ id: v1(), message: "yoyoy" }] , sender: 'You'},
-        { id: v1(),  message: [{ id: v1(), message: "ahahah" }] , sender: 'You'},
+        { id: v1(),  message: [{ id: v1(), message: "Как дела?" }] , sender: 'You'},
+        { id: v1(),  message: [{ id: v1(), message: "Учишь?" }] , sender: 'You'},
     ],
     newMessageBody: "",
 }

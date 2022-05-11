@@ -1,56 +1,59 @@
 .dialogs {
-    display: grid;
-    grid-template-areas: "a b";
-    grid-template-columns: 2fr 10fr;
-    z-index: 99;
-    height: 80vh;
+  display: grid;
+  grid-template-areas: "a b";
+  grid-template-columns: 2fr 10fr;
+  z-index: 99;
+  height: 80vh;
 }
 
 .dialogs .You {
-    background-color: rgb(183, 183, 183);
-    border: 1px solid rgb(180, 67, 67);
-    border-radius: 10px 10px 10px 0px;
-    margin: 10px 20px;
-    padding: 5px;
-    max-width: max-content;
+  background-color: rgb(183, 183, 183);
+  border: 1px solid rgb(180, 67, 67);
+  border-radius: 10px 10px 10px 0px;
+  margin: 10px 0.3em;
+  padding: 5px;
+  max-width: max-content;
 }
 .dialogs .I {
-    background-color: rgb(203, 203, 203);
-    border: 2px solid rgb(120, 100, 174);
-    border-radius: 10px 10px 0px 10px;
-    margin: 10px ;
-    margin-left: 90%;
-    padding: 5px;
-    max-width: max-content;
+  background-color: rgb(203, 203, 203);
+  border: 2px solid rgb(120, 100, 174);
+  border-radius: 10px 10px 0px 10px;
+  margin: 10px;
+  padding: 5px;
+  max-width: max-content;
+  min-width: max-content;
+  /*text-align: right; */
+  max-width: 8em; /* блок занимает ширину родителя, max-width её ограничивает */
+  margin-left: auto;
+  margin-right: 0.3em;
 }
 
-.blockMessage{
-    background-color: rgb(42, 42, 42);
-    border-radius: 5px;
-    padding: 10px;
-
+.blockMessage {
+  background-color: rgb(42, 42, 42);
+  border-radius: 5px;
+  padding: 10px;
 }
 .myMessag {
-    background-color: rgb(77, 77, 77);
-    padding: 10px 10px; 
-    border-radius: 0px 0px 5px 0px;
-    display: grid;
-    grid-template-areas: "a b";
-    grid-template-columns: 10fr 3fr;
-    padding-left: 40px;
+  background-color: rgb(77, 77, 77);
+  padding: 10px 10px;
+  border-radius: 0px 0px 5px 0px;
+  display: grid;
+  grid-template-areas: "a b";
+  grid-template-columns: 10fr 3fr;
+  padding-left: 40px;
 }
-.myMessagButton{
-    margin: auto auto;
-    grid-area: b;
+.myMessagButton {
+  margin: auto auto;
+  grid-area: b;
 }
 
 .dialogsItems {
-    min-width: 170px;
-    border-right: 1px solid rgb(36, 36, 36);
-    grid-area: a;
-    margin-right: 15px;
+  min-width: 170px;
+  border-right: 1px solid rgb(36, 36, 36);
+  grid-area: a;
+  margin-right: 15px;
 }
 
 .dialogsItems a {
-    color: rgb(214, 214, 214);
+  color: rgb(214, 214, 214);
 }
