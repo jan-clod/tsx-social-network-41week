@@ -1,5 +1,5 @@
 import { v1 } from "uuid";
-import { ActionTypes, ProfilePageType } from '../../redux/state';
+import { ActionTypes, ProfilePageType } from "./state";
 
 let initialState = { //вначале в profilepage будет undefined, нужно прописать начальное значение  
     postsData: [

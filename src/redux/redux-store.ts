@@ -1,5 +1,5 @@
-import { PostReducer } from "./../components/dialogs/profile-reducer";
-import { DialogsReducer } from "./../components/dialogs/dialogs-reducer";
+import { PostReducer } from "./profile-reducer";
+import { DialogsReducer } from "./dialogs-reducer";
 import { combineReducers, createStore } from "redux";
 import { storeType } from "./state";
 

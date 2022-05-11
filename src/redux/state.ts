@@ -1,6 +1,10 @@
 import { v1 } from "uuid";
-import { DialogsReducer, SendMessageAC, UpdateNewPostAC } from "../components/dialogs/dialogs-reducer";
-import { addPostAC, PostReducer, UpdateNewMessageAC } from "../components/dialogs/profile-reducer";
+import {
+  DialogsReducer,
+  SendMessageAC,
+  UpdateNewPostAC,
+} from "./dialogs-reducer";
+import { addPostAC, PostReducer, UpdateNewMessageAC } from "./profile-reducer";
 
 export type PostsDataType = {
   id: string;
@@ -10,10 +14,16 @@ export type PostsDataType = {
 export type DialogsDataType = {
   id: string;
   name: string;
+
 };
+export type MessageReduserType = {
+  id: string
+  message :string
+}
 export type MessagesDataType = {
   id: string;
-  message: string;
+  message: Array<MessageReduserType>;
+  sender: 'You' | 'I';
 };
 export type ProfilePageType = {
   postsData: Array<PostsDataType>;
@@ -40,8 +50,7 @@ export type ActionTypes =
   | ReturnType<typeof UpdateNewMessageAC>
   | ReturnType<typeof UpdateNewPostAC>
   | ReturnType<typeof SendMessageAC>;
-
-
+/* 
 let store: storeType = {
   _state: {
     profilePage: {
@@ -78,9 +87,10 @@ let store: storeType = {
   },
   onChange() {},
   dispatch(action) {
-    this._state.profilePage = PostReducer(this._state.profilePage, action)
-    this.onChange()
-    this._state.dialogsPage = DialogsReducer(this._state.dialogsPage, action)
-    this.onChange()
+    this._state.profilePage = PostReducer(this._state.profilePage, action);
+    this.onChange();
+    this._state.dialogsPage = DialogsReducer(this._state.dialogsPage, action);
+    this.onChange();
   },
 };
+ */

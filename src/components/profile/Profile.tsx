@@ -1,5 +1,5 @@
 import { ActionTypes } from "../../redux/state";
-import MyPosts from "./MyPosts/MyPosts";
+import { MyPostsContainer } from "./MyPosts/MyPostContainer";
 import s from "./Profile.module.css"
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
@@ -22,7 +22,7 @@ export const Profile = (props: PropssType) => {
       <div className={s.imgPack}>
         <ProfileInfo />
       </div>
-      <MyPosts
+      <MyPostsContainer
         postsData={props.postsData}
         newPostText={props.newPostText}
         dispatch={props.dispatch}

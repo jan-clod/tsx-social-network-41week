@@ -1,6 +1,4 @@
-import React, { ChangeEvent } from "react";
-import { ActionTypes } from "../../redux/state";
-import { SendMessageAC, UpdateNewPostAC } from "./dialogs-reducer";
+import React, { ChangeEvent, KeyboardEvent } from "react";
 import s from "./Dialogs.module.css";
 import DialogsItem from "./DialogsItem/DialogsItem";
 import MessagesItem from "./Message/Message";
@@ -11,6 +9,7 @@ import SendIcon from '@mui/icons-material/Send';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
+import { MessageReduserType } from "../../redux/state";
 
 type DialogsType = {
   id: string
@@ -18,13 +17,15 @@ type DialogsType = {
 }
 type MessageType = {
   id: string
-  message: string
+  message: Array<MessageReduserType>;
+  sender: 'You' | 'I';
 }
 type PropsType = {
+  onClickSendMessage: () => void
+  onNewMessageChange: (e: string) => void
   dialogsData: Array<DialogsType>
   messageData: Array<MessageType>
   newMessageBody: string
-  dispatch: (action: ActionTypes) => void
 }
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: 'rgb(42, 42, 42)',
@@ -35,23 +36,27 @@ const Item = styled(Paper)(({ theme }) => ({
 export const Dialogs = (props: PropsType) => {
   let dialogsElements =
     props.dialogsData.map(d =>
-      <Box sx={{ minWidth: '100%' }}>
-        <Stack spacing={2}>
-          <Item>
+      <Box sx={{ minWidth: '100%' }} key={d.id}>
+        <Stack spacing={2} key={d.id}>
+          <Item key={d.id}>
             <DialogsItem key={d.id} name={d.name} />
           </Item>
         </Stack>
       </Box>)
   let messegessElements =
-    props.messageData.map(m => <MessagesItem key={m.id} message={m.message} />)
+    props.messageData.map(m => <MessagesItem key={m.id} message={m.message} sender={m.sender}/>)
   let newMessageBody = props.newMessageBody
-
-  const onSendMessageClick = () => {
-    props.dispatch(SendMessageAC())
+  const onClickSendMessage = () => {
+    props.onClickSendMessage()
   }
   const onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     let body = e.currentTarget.value
-    props.dispatch(UpdateNewPostAC(body))
+    props.onNewMessageChange(body)
+  }
+  const onKeyPressHandler = (e: KeyboardEvent<HTMLButtonElement>) => {
+    if (e.key === 'Enter') {
+      props.onClickSendMessage()
+    }
   }
   return (
     <nav className={s.dialogs}>
@@ -75,12 +80,13 @@ export const Dialogs = (props: PropsType) => {
                 onChange={onNewMessageChange}
               />
             </Box>
-            <div>
+            <div className={s.myMessagButton}>
               <Stack direction="row" spacing={2}>
                 <Button
                   variant="contained"
                   endIcon={<SendIcon />}
-                  onClick={onSendMessageClick}
+                  onClick={onClickSendMessage}
+                  onKeyPress={onKeyPressHandler}
                 > Send</Button>
               </Stack>
             </div>

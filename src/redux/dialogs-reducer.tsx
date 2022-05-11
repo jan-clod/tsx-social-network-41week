@@ -1,7 +1,7 @@
 import { v1 } from "uuid";
-import { ActionTypes, dialogsPageType } from '../../redux/state';
+import { ActionTypes, dialogsPageType } from './state';
 
-let initialState = {
+let initialState: dialogsPageType = {
     dialogsData: [
         { id: v1(), name: "Saha" },
         { id: v1(), name: "Anana" },
@@ -12,9 +12,9 @@ let initialState = {
         { id: v1(), name: "Crish" },
     ],
     messagesData: [
-        { id: v1(), message: "Hi" },
-        { id: v1(), message: "goodBye" },
-        { id: v1(), message: "HaveAreYou" },
+        { id: v1(),  message: [{ id: v1(), message: "Hi" }] , sender: 'You'},
+        { id: v1(),  message: [{ id: v1(), message: "yoyoy" }] , sender: 'You'},
+        { id: v1(),  message: [{ id: v1(), message: "ahahah" }] , sender: 'You'},
     ],
     newMessageBody: "",
 }
@@ -24,7 +24,7 @@ export const DialogsReducer = (dialogsPage: dialogsPageType = initialState , act
         case "SEND-MESSAGE":
             let body = dialogsPage.newMessageBody;
             dialogsPage.newMessageBody = "";
-            dialogsPage.messagesData.push({ id: v1(), message: body });
+            dialogsPage.messagesData.push({ id: v1(), message: [{id: v1(), message:body}], sender:'I' });
 
             return dialogsPage;
         case "UPDATE-NEW-MESSAGE-BODY":

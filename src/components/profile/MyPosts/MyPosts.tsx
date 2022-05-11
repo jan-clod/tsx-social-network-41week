@@ -1,13 +1,12 @@
 import React, { ChangeEvent, KeyboardEvent, useState } from "react";
-import { ActionTypes } from "../../../redux/state";
-import { addPostAC, UpdateNewMessageAC } from "../../dialogs/profile-reducer";
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
 
 type MyPostsType = {
   postsData: Array<PostsData>
-  newPostText: string
-  dispatch: (action: ActionTypes) => void
+  newPostText?: string
+  updateNewPostChange: (text:string)=>void
+  addPost: ()=>void
 }
 type PostsData = {
   id: string
@@ -16,15 +15,16 @@ type PostsData = {
 }
 const MyPosts = (props: MyPostsType) => {
   const [disabled, SetDisabled] = useState(false)
-
-  const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    let events = e.currentTarget.value
-    props.dispatch(UpdateNewMessageAC(events))
+  const addPostHandler = () => {
+    props.addPost()
   }
-
+  const onPostChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    let text = e.currentTarget.value
+    props.updateNewPostChange(text)
+  }
   const onKeyPressHandler = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter') {
-      props.dispatch(addPostAC())
+      props.addPost()
     }
   }
 
@@ -44,12 +44,12 @@ const MyPosts = (props: MyPostsType) => {
       <div>
         <textarea
           value={props.newPostText}
-          onChange={onChangeHandler}
+          onChange={onPostChangeHandler}
           onKeyPress={onKeyPressHandler}>
         </textarea>
       </div>
       <div>
-        <button disabled={disabled} onClick={() => props.dispatch(addPostAC())}>Add Post</button> *
+        <button disabled={disabled} onClick={addPostHandler}>Add Post</button> *
       </div>
       <div className={s.posts}>{postsElements}</div>
     </div>
