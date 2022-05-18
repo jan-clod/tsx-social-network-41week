@@ -2,21 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom'
 import App from "./App";
 
-import { StateType } from "./redux/state";
-import { store } from "./redux/redux-store";
-
-export const renderTree=(red?:StateType)=>{
+import { AppStateType, store } from "./redux/redux-store";
+import { Provider } from 'react-redux';
+export const renderTree = (stor?:AppStateType) => {
     ReactDOM.render(
         <React.StrictMode>
-            <App store={store}/>
+            <Provider store={store}>
+                <App />
+            </Provider>
         </React.StrictMode>,
         document.getElementById('root')
     )
     console.log('перерисовак render.tsx');
-    
+
 }
-
-
 
 
 

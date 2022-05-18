@@ -1,4 +1,4 @@
-import React, { ChangeEvent, KeyboardEvent } from "react";
+import { ChangeEvent, KeyboardEvent } from "react";
 import s from "./Dialogs.module.css";
 import DialogsItem from "./DialogsItem/DialogsItem";
 import MessagesItem from "./Message/Message";
@@ -9,7 +9,7 @@ import SendIcon from '@mui/icons-material/Send';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
-import { MessageReduserType } from "../../redux/state";
+import { MessageReduserType } from "../../redux/dialogs-reducer";
 
 type DialogsType = {
   id: string
@@ -27,7 +27,7 @@ type PropsType = {
   messageData: Array<MessageType>
   newMessageBody: string
 }
-const Item = styled(Paper)(({ theme }) => ({
+const Item = styled(Paper)(({ theme }:any) => ({
   backgroundColor: 'rgb(42, 42, 42)',
   padding: theme.spacing(2),
   textAlign: 'left',
@@ -43,20 +43,18 @@ export const Dialogs = (props: PropsType) => {
           </Item>
         </Stack>
       </Box>)
-  let messegessElements =
-    props.messageData.map(m => <MessagesItem key={m.id} message={m.message} sender={m.sender}/>)
-  let newMessageBody = props.newMessageBody
-  const onClickSendMessage = () => {
-    props.onClickSendMessage()
-  }
+  let messegessElements = props.messageData.map(m => <MessagesItem key={m.id} message={m.message} sender={m.sender}/>)
+  
+    let newMessageBody = props.newMessageBody
+
+  const onClickSendMessage = () => props.onClickSendMessage()
+  
   const onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     let body = e.currentTarget.value
     props.onNewMessageChange(body)
   }
-  const onKeyPressHandler = (e: KeyboardEvent<HTMLButtonElement>) => {
-    if (e.key === 'Enter') {
-      props.onClickSendMessage()
-    }
+  const onKeyPressHandler = (e: KeyboardEvent<HTMLDivElement>) => {
+    e.key === 'Enter' && props.onClickSendMessage()
   }
   return (
     <nav className={s.dialogs}>
@@ -78,6 +76,7 @@ export const Dialogs = (props: PropsType) => {
                 placeholder="please"
                 value={newMessageBody}
                 onChange={onNewMessageChange}
+                onKeyPress={onKeyPressHandler}
               />
             </Box>
             <div className={s.myMessagButton}>
@@ -86,7 +85,6 @@ export const Dialogs = (props: PropsType) => {
                   variant="contained"
                   endIcon={<SendIcon />}
                   onClick={onClickSendMessage}
-                  onKeyPress={onKeyPressHandler}
                 > Send</Button>
               </Stack>
             </div>

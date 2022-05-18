@@ -1,5 +1,5 @@
 import React from "react";
-import { MessageReduserType } from "../../../redux/state";
+import { MessageReduserType } from "../../../redux/dialogs-reducer";
 import s from "./../Dialogs.module.css";
 
 type MessagesItemType = {

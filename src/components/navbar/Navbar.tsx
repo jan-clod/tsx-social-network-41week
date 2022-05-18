@@ -66,6 +66,11 @@ export const Navbar = () => {
           </Item>
           <Item>
             <div className={`${cl.item} ${cl.active}`}>
+              <NavLink to="/users"><AccountBoxIcon/>Users</NavLink>
+            </div>
+          </Item>
+          <Item>
+            <div className={`${cl.item} ${cl.active}`}>
               <NavLink to="/news"><NewspaperIcon/> News</NavLink>
             </div>
           </Item>

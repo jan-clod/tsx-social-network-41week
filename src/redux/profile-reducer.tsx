@@ -1,5 +1,19 @@
 import { v1 } from "uuid";
-import { ActionTypes, ProfilePageType } from "./state";
+
+export type PostsDataType = {
+    id: string;
+    message: string;
+    LikesCount: number;
+};
+
+export type ProfilePageType = {
+    postsData: Array<PostsDataType>;
+    newPostText: string;
+};
+
+export type ActionTypes =
+    | ReturnType<typeof addPostAC>
+    | ReturnType<typeof UpdateNewMessageAC>
 
 let initialState = { //вначале в profilepage будет undefined, нужно прописать начальное значение  
     postsData: [
@@ -10,22 +24,31 @@ let initialState = { //вначале в profilepage будет undefined, ну�
     newPostText: " ",
 }
 
-export const PostReducer = (profilePage : ProfilePageType = initialState, action: ActionTypes) => {
+export const PostReducer = (profilePage: ProfilePageType = initialState, action: ActionTypes) => {
     switch (action.type) {
-        case "ADD-POST":
+        case "ADD-POST": {
+            let profilePageCopy = { ...profilePage }
             const newPost = {
                 id: v1(),
-                message: profilePage.newPostText,
+                message: profilePageCopy.newPostText,
                 LikesCount: 14
             }
-            profilePage.postsData.unshift(newPost)
-            profilePage.newPostText = '';
-            return profilePage;
-        case "UPDATE-NEW-TEXT":
-            profilePage.newPostText = action.newText
-            return profilePage
-        default:
-            return profilePage;
+            profilePageCopy.postsData = [...profilePage.postsData]
+            newPost.message && profilePageCopy.postsData.unshift(newPost)
+            profilePageCopy.newPostText = '';
+            return profilePageCopy;
+        }
+        case "UPDATE-NEW-TEXT": {
+            return { 
+                ...profilePage, 
+                newPostText: action.newText 
+            }
+            
+        }
+        default: {
+            return { ...profilePage }
+        }
+
     }
 };
 export const addPostAC = () => {

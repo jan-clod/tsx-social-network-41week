@@ -1,38 +1,25 @@
-import { ActionTypes, MessageReduserType, MessagesDataType } from "../../redux/state";
-import { SendMessageAC, UpdateNewPostAC } from "../../redux/dialogs-reducer";
+import { ActionTypes, DialogsPageType, SendMessageAC, UpdateNewPostAC } from "../../redux/dialogs-reducer";
 import { Dialogs } from "./Dialogs";
+import { connect } from "react-redux";
+import { AppStateType } from "../../redux/redux-store";
 
-type DialogsType = {
-    id: string
-    name: string
+let mapStateToProps = (state: AppStateType):DialogsPageType => { // контекстом приходит state
+    return {
+        dialogsData: state.dialogsPage.dialogsData,
+        messagesData: state.dialogsPage.messagesData,
+        newMessageBody: state.dialogsPage.newMessageBody
+    }
 }
-type MessageType = {
-    id: string
-    message: Array<MessageReduserType>;
-    sender: 'You' | 'I';
-}
-type PropsType = {
-    dialogsData: Array<DialogsType>
-    messageData: Array<MessageType>
-    newMessageBody: string
-    dispatch: (action: ActionTypes) => void
-}
+let mapDispathToProps = (dispatch: (action: ActionTypes) => void) => {
+    return {
 
-export const DialogsContainer = (props: PropsType) => {
-    const onClickSendMessage = () => {
-        props.dispatch(SendMessageAC())
+        onClickSendMessage: () => {
+           dispatch(SendMessageAC())
+        },
+        onNewMessageChange: (body: string) => {
+           dispatch(UpdateNewPostAC(body))
+        }
     }
-    const onNewMessageChange = (e: string) => {
-        let body = e
-        props.dispatch(UpdateNewPostAC(body))
-    }
-    return (
-        <Dialogs
-            onClickSendMessage={onClickSendMessage}
-            onNewMessageChange={onNewMessageChange}
-            dialogsData={props.dialogsData}
-            messageData={props.messageData}
-            newMessageBody={props.newMessageBody}
-        />
-    );
-};
+}
+export const DialogsContainer = connect(mapStateToProps, mapDispathToProps)(Dialogs)
+//Dialogs презинтационная компонента

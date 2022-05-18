@@ -1,0 +1,9 @@
+.img{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.blockImg {
+    background-color: rgb(26, 35, 42);
+}
