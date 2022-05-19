@@ -9,7 +9,6 @@ import { DialogsContainer } from './components/dialogs/DialogsContainer';
 import { store } from './redux/redux-store';
 import { UsersContainer } from './components/Users/UsersContainer';
 
-
 export const App = (): JSX.Element => {
   
   return (

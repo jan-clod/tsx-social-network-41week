@@ -1,9 +1,52 @@
-.img{
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
+.userBlock {
+  border: 5px solid rgb(7, 10, 21);
+  display: grid;
+  grid-gap: 0.8em;
+  grid-template-areas:
+    "img fullName fullName "
+    "img status status"
+    "img button  button";
+  grid-template-columns: 1fr 10fr 10fr;
+  grid-template-rows: 2rem 2rem 2rem;
+  padding: 10px;
+  justify-items: start;
+}
+.grid {
+  text-align: center;
+  font-size: 30px;
 }
 
 .blockImg {
-    background-color: rgb(26, 35, 42);
+  margin: 1rem;
+}
+
+.img {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  grid-area: img;
+}
+
+.button {
+  grid-area: button;
+  border: 1px solid rgb(159, 191, 54);
+}
+
+.fullName {
+  font-size: 1.5rem;
+  color: rgb(255, 255, 255);
+  grid-area: fullName;
+}
+
+.status {
+  font-size: 1rem;
+  color: rgb(182, 187, 194);
+  grid-area: status;
+}
+
+.location {
+  font-size: 0.5rem;
+  border: 1px solid rgb(226, 182, 182);
+  color: rgb(174, 169, 169);
+  grid-area: location;
 }

@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import s from "./Users.module.css";
 
 
@@ -14,7 +15,7 @@ type LocationType = {
     country: string
 }
 type PropsType = {
-    users:Array<UserType>
+    users: Array<UserType>
     follow: (userId: string) => void
     unfollow: (userId: string) => void
     setUsers: (users: Array<UserType>) => void
@@ -25,26 +26,28 @@ export const Users = (props: PropsType) => {
         <div>
             {
                 props.users.map(u => <div key={u.id}>
-                    <span>
-                        <div>
-                            {u.followed 
-                            ?<button onClick={()=>{props.unfollow(u.id)}}>Подписаться</button> 
-                            :<button onClick={()=>{props.follow(u.id)}}>Отписаться</button>
-                            }
+
+                    <div className={s.userBlock}>
+                        <div className={s.blockImg + ' ' + s.grid}>
+                            <img className={s.img + ' ' + s.grid} src={u.photoUrl} alt="" />
                         </div>
-                        <div className={s.blockImg}>
-                            <img className={s.img} src={u.photoUrl} alt="" />
-                        </div>
-                    </span>
-                    <span>
-                        <span>
-                            <div>{u.fullName}</div>
-                            <div>{u.status}</div>
-                        </span>
-                        <span>
+                        {u.followed
+                            ? <Button
+                                className={s.button + ' ' + s.grid}
+                                variant="outlined"
+                                size="small"
+                                onClick={() => { props.unfollow(u.id) }}>Подписаться</Button>
+                            : <Button
+                                className={s.button + ' ' + s.grid}
+                                onClick={() => { props.follow(u.id) }}>Отписаться</Button>
+                        }
+                        <div className={s.fullName + ' ' + s.grid}>{u.fullName}</div>
+                        <div className={s.status + ' ' + s.grid}>{u.status}</div>
+
+  {/*                       <div className={s.location + ' ' + s.grid}>
                             <div>Belarus</div>
-                        </span>
-                    </span>
+                        </div> */}
+                    </div>
                 </div>)
             }
         </div>
