@@ -7,17 +7,18 @@
     "img  name"
     "img  info";
   grid-template-columns: 1fr 10fr;
-  grid-template-rows: 4rem 12rem;
+  grid-template-rows: 2fr 5fr;
   margin-bottom: 1rem;
 }
 
 .imgPack {
   grid-area: img;
   grid-row: span 2;
+  margin: auto;
 }
 
 .imgPack img {
-  height: 16rem;
+  width: 16vw;
 }
 
 .nameBlock {
