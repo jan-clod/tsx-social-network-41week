@@ -4,7 +4,7 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 export const Profile = () => {
   return (
-    <div className={s.qwe}>
+    <div className={s.Profile}>
       <div className={s.imgPack}>
         <ProfileInfo />
       </div>

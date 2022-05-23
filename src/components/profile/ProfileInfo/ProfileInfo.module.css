@@ -1,16 +1,33 @@
-.descriptionBlock {
-    padding: 10px;
-    color: rgb(146, 88, 88);
-    font-size: 19px;
+.ProfileInfoBlock {
+  border-radius: 5px;
+  background-color: rgb(42, 42, 42);
+  padding: 1rem;
+  display: grid;
+  grid-template-areas:
+    "img  name"
+    "img  info";
+  grid-template-columns: 1fr 10fr;
+  grid-template-rows: 4rem 12rem;
+  margin-bottom: 1rem;
 }
 
-  
-  .imgPack  img {
-    width: 350px;
-    border-radius: 10px;
-  }
+.imgPack {
+  grid-area: img;
+  grid-row: span 2;
+}
 
+.imgPack img {
+  height: 16rem;
+}
 
-  .profInfoBlock {
-    padding: 10px;
-  }
+.nameBlock {
+  border-bottom: 1px solid rgb(215, 217, 255);
+  color: rgb(203, 205, 255);
+  grid-area: name;
+  margin: 0rem 3rem 0rem 3rem;
+}
+.infoBlock {
+  grid-area: info;
+  color: rgb(160, 158, 201);
+  margin: 0.5rem 3rem 0rem 3rem; /* t,r,b,l */
+}

@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import s from "./Users.module.css";
 
 
@@ -24,6 +24,15 @@ type PropsType = {
 export const Users = (props: PropsType) => {
     return (
         <div>
+            <div className={s.TextField}>
+
+                <TextField 
+                focused 
+                fullWidth 
+                label="Поиск пользователей" 
+                id="fullWidth" />
+
+            </div>
             {
                 props.users.map(u => <div key={u.id}>
 
@@ -34,7 +43,8 @@ export const Users = (props: PropsType) => {
                         {u.followed
                             ? <Button
                                 className={s.button + ' ' + s.grid}
-                                variant="outlined"
+                                variant="contained"
+                                color="error"
                                 size="small"
                                 onClick={() => { props.unfollow(u.id) }}>Подписаться</Button>
                             : <Button
@@ -44,7 +54,7 @@ export const Users = (props: PropsType) => {
                         <div className={s.fullName + ' ' + s.grid}>{u.fullName}</div>
                         <div className={s.status + ' ' + s.grid}>{u.status}</div>
 
-  {/*                       <div className={s.location + ' ' + s.grid}>
+                        {/*                       <div className={s.location + ' ' + s.grid}>
                             <div>Belarus</div>
                         </div> */}
                     </div>

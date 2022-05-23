@@ -1,10 +1,39 @@
-.item {
+.Post {
   color: rgb(255, 255, 255);
   font-size: 19px;
-  padding: 20px;
+  display: grid;
+  grid-template-areas:
+    "img  name"
+    "img  post"
+    "like  like";
+  grid-template-columns: 1fr 6fr;
+  grid-template-rows: 3rem auto 3rem;
+  margin: 1rem;
+  border-bottom: 1px solid rgb(26, 26, 29);
 }
-.item img {
-  width: 100px;
-  height: 100px;
+.Post img {
+  width: 6rem;
+  height: 6rem;
   border-radius: 35px;
+  grid-area: img;
+  grid-row: span 2;
+  margin-bottom: 1rem;
+}
+
+.name {
+  grid-area: name;
+  margin-bottom: 1rem;
+  font-size:x-large
+
+}
+
+.messagePost{
+  grid-area: post;
+  margin-bottom: 1rem;
+  grid-column-start: 2;
+  margin-left: 1rem;
+}
+
+.likes {
+  grid-area: like;
 }

@@ -2,13 +2,20 @@ import s from './ProfileInfo.module.css';
 
 
 const ProfileInfo = () => {
-  return <div className={s.profInfoBlock}>
+  return <div className={s.ProfileInfoBlock}>
     <div className={s.imgPack}>
-      <img src='https://krot.info/uploads/posts/2021-02/1613589070_4-p-fon-stranitsi-dlya-donationalerts-4.jpg' />
+      <img src='https://sun2.beltelecom-by-minsk.userapi.com/s/v1/if1/c3opGqEc6rlIs1s1heXXe6z7s3RnR_8TNCap2uGTlwJwc21_SRc6__84sSbCWToYpTxqxJJZ.jpg?size=200x200&quality=96&crop=236,0,607,607&ava=1' />
     </div>
-    <div className={s.descriptionBlock}>
-      avatr + dicription1 profilleInfo
+    <div className={s.nameBlock}>
+      <h2>
+        My Name Neimovich
+      </h2>
     </div>
+    <div className={s.infoBlock}>
+      `Dата рождения: 07.07.97 {<br />}
+      Город: Пинск`
+    </div>
+
   </div>
 }
 
