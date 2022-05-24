@@ -1,0 +1,13 @@
+.pogoda{
+    color: aliceblue;
+    border-radius: 5px;
+    background-color: rgb(42, 42, 42);
+    margin-bottom: 1rem;
+    padding: 1rem;
+}
+.textField{
+    background-color: aliceblue;
+    max-width: min-content;
+    min-width: 200px;
+    border-radius: 5px;
+}

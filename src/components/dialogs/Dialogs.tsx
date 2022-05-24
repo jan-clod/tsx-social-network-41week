@@ -27,7 +27,7 @@ type PropsType = {
   messageData: Array<MessageType>
   newMessageBody: string
 }
-const Item = styled(Paper)(({ theme }:any) => ({
+const Item = styled(Paper)(({ theme }: any) => ({
   backgroundColor: 'rgb(42, 42, 42)',
   padding: theme.spacing(2),
   textAlign: 'left',
@@ -43,12 +43,12 @@ export const Dialogs = (props: PropsType) => {
           </Item>
         </Stack>
       </Box>)
-  let messegessElements = props.messageData.map(m => <MessagesItem key={m.id} message={m.message} sender={m.sender}/>)
-  
-    let newMessageBody = props.newMessageBody
+  let messegessElements = props.messageData.map(m => <MessagesItem key={m.id} message={m.message} sender={m.sender} />)
+
+  let newMessageBody = props.newMessageBody
 
   const onClickSendMessage = () => props.onClickSendMessage()
-  
+
   const onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     let body = e.currentTarget.value
     props.onNewMessageChange(body)

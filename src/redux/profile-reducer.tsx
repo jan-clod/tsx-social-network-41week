@@ -30,11 +30,12 @@ export const PostReducer = (profilePage: ProfilePageType = initialState, action:
             let profilePageCopy = { ...profilePage }
             const newPost = {
                 id: v1(),
-                message: profilePageCopy.newPostText,
+                message: profilePageCopy.newPostText, 
                 LikesCount: 14
             }
             profilePageCopy.postsData = [...profilePage.postsData]
             newPost.message && profilePageCopy.postsData.unshift(newPost)
+            debugger
             profilePageCopy.newPostText = '';
             return profilePageCopy;
         }

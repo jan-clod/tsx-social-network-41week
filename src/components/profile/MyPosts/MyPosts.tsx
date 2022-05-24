@@ -62,7 +62,9 @@ const MyPosts = (props: MyPostsType) => {
   }
   const onPostChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
     let text = e.currentTarget.value
-    props.updateNewPostChange(text)
+    if (text) {
+      props.updateNewPostChange(text)
+    }
   }
   const onKeyPressHandler = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'Enter') {
@@ -124,7 +126,7 @@ const MyPosts = (props: MyPostsType) => {
               <Tab label="Архив записей" {...a11yProps(2)} />
             </Tabs>
           </Box>
-{/*           <TabPanel value={value} index={0}>
+          {/*           <TabPanel value={value} index={0}>
             Item One
           </TabPanel>
           <TabPanel value={value} index={1}>

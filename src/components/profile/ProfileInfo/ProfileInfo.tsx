@@ -12,7 +12,7 @@ const ProfileInfo = () => {
       </h2>
     </div>
     <div className={s.infoBlock}>
-      `Dата рождения: 07.07.97 {<br />}
+      Dата рождения: 07.07.97 {<br />}
       Город: Пинск`
     </div>
 
