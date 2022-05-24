@@ -15,7 +15,7 @@ export const News = (/* props */) => {
         main: {
             temp: 0,
         },
-        name: 'Pinsk',
+        name: 'Pinsk', 
     });
 
     let workApi = `https://api.openweathermap.org/data/2.5/weather?q=${res.name}&appid=2ec4423fb53af22117b897d87dd00576&units=metric`
