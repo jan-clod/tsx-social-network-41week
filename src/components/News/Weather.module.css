@@ -5,3 +5,9 @@
     margin-bottom: 1rem;
     padding: 1rem;
 }
+.textField{
+    background-color: aliceblue;
+    max-width: min-content;
+    min-width: 200px;
+    border-radius: 5px;
+}

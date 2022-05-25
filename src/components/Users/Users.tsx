@@ -1,4 +1,5 @@
 import { Button, TextField } from "@mui/material";
+import { NavLink } from "react-router-dom";
 import s from "./Users.module.css";
 
 
@@ -26,11 +27,11 @@ export const Users = (props: PropsType) => {
         <div>
             <div className={s.TextField}>
 
-                <TextField 
-                focused 
-                fullWidth 
-                label="Поиск пользователей" 
-                id="fullWidth" />
+                <TextField
+                    focused
+                    fullWidth
+                    label="Поиск пользователей"
+                    id="fullWidth" />
 
             </div>
             {
@@ -38,7 +39,9 @@ export const Users = (props: PropsType) => {
 
                     <div className={s.userBlock}>
                         <div className={s.blockImg + ' ' + s.grid}>
-                            <img className={s.img + ' ' + s.grid} src={u.photoUrl} alt="" />
+                            <NavLink to={'/profile/' + u.id}>
+                                <img className={s.img + ' ' + s.grid} src={u.photoUrl} alt="" />
+                            </NavLink>
                         </div>
                         {u.followed
                             ? <Button
