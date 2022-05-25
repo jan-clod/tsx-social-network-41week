@@ -79,7 +79,7 @@ export const Music = (/* props */) => {
         <div className={s.mus}>
             <h2>Musics:</h2>
             <p>
-                <a href={mus.tracks[0][0].preview_url}>{mus.tracks[0][0].name}</a>
+                <a href={mus.tracks[0][0].preview_url} target="_blank">{mus.tracks[0][0].name}</a>
             </p>
             <button onClick={handleSubmit}>получить ссылку на песню</button>
 
