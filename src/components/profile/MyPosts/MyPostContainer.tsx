@@ -18,7 +18,7 @@ let mapDispathToProps = (dispatch: (action: ActionTypes) => void) => {
         updateNewPostChange: (text:string) => {
             dispatch(UpdateNewMessageAC(text))
         }
-    }
+    } 
 }
 
 export const MyPostsContainer = connect(mapStateToProps, mapDispathToProps)(MyPosts)

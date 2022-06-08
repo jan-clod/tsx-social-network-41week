@@ -14,7 +14,7 @@ let mapDispathToProps = (dispatch: (action: ActionTypes) => void) => {
     return {
 
         onClickSendMessage: () => {
-           dispatch(SendMessageAC())
+           dispatch(SendMessageAC()) 
         },
         onNewMessageChange: (body: string) => {
            dispatch(UpdateNewPostAC(body))

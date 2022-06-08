@@ -43,7 +43,9 @@ export const Dialogs = (props: PropsType) => {
           </Item>
         </Stack>
       </Box>)
-  let messegessElements = props.messageData.map(m => <MessagesItem key={m.id} message={m.message} sender={m.sender} />)
+  let messegessElements =
+    props.messageData.map(m =>
+      <MessagesItem key={m.id} message={m.message} sender={m.sender} />)
 
   let newMessageBody = props.newMessageBody
 

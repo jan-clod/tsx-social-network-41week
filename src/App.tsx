@@ -8,6 +8,7 @@ import { Header } from './components/header/Header';
 import { DialogsContainer } from './components/dialogs/DialogsContainer';
 import { store } from './redux/redux-store';
 import { UsersContainer } from './components/Users/UsersContainer';
+import { MusicContainer } from './components/Music/MusicContainer';
 
 export const App = (): JSX.Element => {
   
@@ -39,7 +40,7 @@ export const App = (): JSX.Element => {
 
             <Route
               path='/music'
-              element={<Music />}>
+              element={<MusicContainer musicpage={store.getState().musicpage} />}>
             </Route>
 
             <Route

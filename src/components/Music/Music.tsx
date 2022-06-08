@@ -1,98 +1,78 @@
-import { useState } from "react"
-import axios from "axios";
+import { v1 } from "uuid";
+import { musicpageType } from "../../redux/music-reducer";
 import s from './Music.module.css';
 
-export const Music = (/* props */) => {
-    /*     const optionsAlbum = {
-            method: 'GET',
-            url: 'https://spotify23.p.rapidapi.com/search/',
-            params: {
-                q: '<REQUIRED>',
-                type: 'multi',
-                offset: '0',
-                limit: '10',
-                numberOfTopResults: '5'
-            },
-            headers: {
-                'X-RapidAPI-Host': 'spotify23.p.rapidapi.com',
-                'X-RapidAPI-Key': '9af4e20d38msh2bf9f6fff9d7e80p145d46jsnde5cfb215f8c'
-            }
-        };
-    
-        axios
-            .request(optionsAlbum)
-            .then(function (response) {
-                console.log(response.data);
-            })
-            .catch(function (error) {
-                console.error(error);
-            }); */
+type trackType = {
+    name: string
+    preview_url: string
+}
+type musicPropsType = {
+    musicpage: musicpageType
+    AddMusicAC: (name: string, preview_url: string) => void
+}
+type musicElemType = {
+    album: { album_type: string, artists: [], external_urls: {}, id: string, images: [] }
+    artists: [{}]
+    disc_number: number
+    duration_ms: number
+    episode: false
+    explicit: true
+    external_ids: { isrc: string }
+    external_urls: { spotify: string }
+    id: string
+    is_local: false
+    is_playable: true
+    name: string
+    popularity: 71
+    preview_url: string
+    track: trackType
+    track_number: 2
+    type: string
+    uri: string
+}
 
-    const optionsTrek = {
+export const Music = (props: musicPropsType) => {
+
+    const axios = require("axios");
+    const options = {
         method: 'GET',
-        url: 'https://spotify23.p.rapidapi.com/tracks/',
-        params: { ids: '4WNcduiCmDNfmTEz7JvmLv' },
+        url: 'https://spotify23.p.rapidapi.com/playlist_tracks/',
+        params: { id: '37i9dQZF1DX4Wsb4d7NKfP', offset: '0', limit: '3' },
         headers: {
             'X-RapidAPI-Host': 'spotify23.p.rapidapi.com',
             'X-RapidAPI-Key': '9af4e20d38msh2bf9f6fff9d7e80p145d46jsnde5cfb215f8c'
         }
     };
-    const handleSubmit = () => {
-        axios.request(optionsTrek).then(function (response) {
-            console.log(response.data.tracks);
 
-            setMus({
-                ...mus,
-                tracks: [{
-                    ...response.data.tracks,
-                    0: {
-                        ...response.data.tracks[0],
-                        external_urls: {
-                            ...mus.tracks[0][0].external_urls,
-                            spotify: response.data.tracks[0].external_urls.spotify,
-                            preview_url: response.data.tracks[0].preview_url
-                        },
-                        name: response.data.tracks[0].name
-                    }
-                }]
-            })
+    axios.request(options).then(function (responce: any) {
+        console.log(responce.data.items);
 
-        }).catch(function (error) {
-            console.error(error);
-        });
-        console.log('qweqweqweq' + mus.tracks[0][0].name);
+        responce.data.items.map((m: musicElemType) =>
+            props.AddMusicAC(m.track.name, m.track.preview_url))
 
-    }
-    let [mus, setMus] = useState({
-        tracks: [{
-            0: {
-                external_urls: {
-                    spotify: "mLv"
-                },
-                preview_url: 'qwed',
-                name: '_____'
-            }
-        }],
-    })
+    }).catch(function (error: any) {
+        console.error(error);
+    });
+
+    let musicElem = props.musicpage.items.map(m => (
+        <div key={v1()}>
+            <a
+                key={v1()}
+                target="_blank"
+                rel="noreferrer"
+                href={m.track.preview_url}
+            >
+                {m.track.name} </a>
+        </div>
+    ))
+
+
 
     return (
         <div className={s.mus}>
-            <h2>Musics:</h2>
-            <p>
-                <a href={mus.tracks[0][0].preview_url} target="_blank">{mus.tracks[0][0].name}</a>
-            </p>
-            <button onClick={handleSubmit}>получить ссылку на песню</button>
-
+            <h2>Musics:</h2><br />
+            {musicElem}
+            <button /* onClick={click} */>получить ссылку на песню</button>
         </div>
     )
-
 }
-{/* <video 
-controls="" 
-autoplay="" 
-name="media"
-><source src="https://p.scdn.co/mp3-preview/40821a698364f0bf84b15bcc71a40ef813fff0e1?cid=f6a40776580943a7bc5173125a1e8832" type="audio/mpeg"></video>
-
-           
-
-*/}

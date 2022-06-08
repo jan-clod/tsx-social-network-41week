@@ -3,7 +3,7 @@ import SendIcon from '@mui/icons-material/Send';
 import React, { ChangeEvent, KeyboardEvent, useState } from "react";
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
-/* ------------------UI---------------------- */
+/* ------------------MUI---------------------- */
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
@@ -42,7 +42,9 @@ export const a11yProps = (index: number) => {
   };
 }
 
-/* ------------------/UI---------------------- */
+/* ------------------/MUI---------------------- */
+
+
 
 type MyPostsType = {
   postsData: Array<PostsData>
@@ -55,7 +57,11 @@ type PostsData = {
   message: string
   LikesCount: number
 }
+
+
 const MyPosts = (props: MyPostsType) => {
+
+
   const [disabled, SetDisabled] = useState(false)
   const addPostHandler = () => {
     props.addPost()
