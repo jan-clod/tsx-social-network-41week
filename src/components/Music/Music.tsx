@@ -37,23 +37,23 @@ export const Music = (props: musicPropsType) => {
     const options = {
         method: 'GET',
         url: 'https://spotify23.p.rapidapi.com/playlist_tracks/',
-        params: { id: '37i9dQZF1DX4Wsb4d7NKfP', offset: '0', limit: '3' },
+        params: { id: '37i9dQZF1DX4Wsb4d7NKfP', offset: '0', limit: '10' },
         headers: {
             'X-RapidAPI-Host': 'spotify23.p.rapidapi.com',
             'X-RapidAPI-Key': '9af4e20d38msh2bf9f6fff9d7e80p145d46jsnde5cfb215f8c'
         }
     };
+    if (props.musicpage.items.length <= 1) {
+        axios.request(options).then(function (responce: any) {
+            console.log(responce.data.items);
 
-    axios.request(options).then(function (responce: any) {
-        console.log(responce.data.items);
+            responce.data.items.map((m: musicElemType) =>
+                props.AddMusicAC(m.track.name, m.track.preview_url))
 
-        responce.data.items.map((m: musicElemType) =>
-            props.AddMusicAC(m.track.name, m.track.preview_url))
-
-    }).catch(function (error: any) {
-        console.error(error);
-    });
-
+        }).catch(function (error: any) {
+            console.error(error);
+        });
+    }
     let musicElem = props.musicpage.items.map(m => (
         <div key={v1()}>
             <a
