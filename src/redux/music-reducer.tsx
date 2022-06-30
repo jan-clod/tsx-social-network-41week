@@ -19,8 +19,8 @@ export type ActionTypes = ReturnType<typeof AddMusicAC>
 let initialState: musicpageType = {
     items: [
         {track: {
-                name: ' as',
-                preview_url: 'zxc'
+                name: '',
+                preview_url: ''
             }
         }
     ]

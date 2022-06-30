@@ -3,11 +3,15 @@ import { v1 } from "uuid";
 export type UserStateType = {
     users: Array<UserType>
 }
+export type PhotoType = {
+    small: string
+    large: string
+}
 export type UserType = {
     id: string
     followed: boolean
-    photoUrl: string
-    fullName: string
+    photos: PhotoType
+    name: string
     status: string
     location: Array<LocationType>;
 }
@@ -25,24 +29,30 @@ let initialState: UserStateType = {
         {
             id: v1(),
             followed: false,
-            photoUrl:"https://i.pinimg.com/550x/31/23/2f/31232fe4b51b47763282524f008d9081.jpg",
-            fullName: 'Anana',
+            photos:{
+                small:"https://i.pinimg.com/550x/31/23/2f/31232fe4b51b47763282524f008d9081.jpg", 
+                large: ''},
+            name: 'Anana',
             status: 'Bathing - дозирование',
             location: [{ city: 'Pinsk', country: 'Belarus' }]
         },
         {
             id: v1(),
             followed: true,
-            photoUrl:"https://s.ws.pho.to/img/index/ai/source.jpg",
-            fullName: 'Oil',
+            photos:{
+                small:"https://s.ws.pho.to/img/index/ai/source.jpg", 
+                large: ''},
+            name: 'Oil',
             status: 'детерминированость',
             location: [{ city: 'Grodno', country: 'Belarus' }]
         },
         {
             id: v1(),
             followed: false,
-            photoUrl:"https://images.unsplash.com/photo-1626847152272-c64724db41c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8Mnx8fGVufDB8fHx8&w=1000&q=80",
-            fullName: 'Main',
+            photos:{
+                small:"https://images.unsplash.com/photo-1626847152272-c64724db41c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8Mnx8fGVufDB8fHx8&w=1000&q=80", 
+                large: ''},
+            name: 'Main',
             status: 'Иммутабельность',
             location: [{ city: 'Reikiiavick', country: 'hz' }]
         },
