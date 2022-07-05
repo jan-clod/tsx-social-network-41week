@@ -19,22 +19,35 @@ type LocationType = {
 } */
 type PropsType = {
     users: Array<UserType>
+    pageSize: number
+    totalUserCount: number
+    currentPage: number
     follow: (userId: string) => void
     unfollow: (userId: string) => void
     setUsers: (users: Array<UserType>) => void
 }
 class Users extends React.Component<PropsType> {
-    constructor(props: PropsType) {
-        super(props)
-            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-                console.log(response.data);
-                this.props.setUsers(response.data.items)
-            })
+    componentDidMount() {
+        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+            console.log(response.data);
+            this.props.setUsers(response.data.items)
+        })
     }
 
     render() {
+
+        let pageCount = this.props.totalUserCount / this.props.totalUserCount
+        let pages = []
+        for (let i = 1; i <= pageCount; i++) {
+            pages.push(i)
+        }
         return (
             <div>
+                <div>
+                    {pages.map(p => {
+                        return <span className={ this.props.currentPage === p ? s.selectedPage : ''}>{p}</span>
+                    })}
+                </div>
                 <div className={s.TextField}>
                     <TextField
                         focused
@@ -48,10 +61,10 @@ class Users extends React.Component<PropsType> {
                         <div className={s.userBlock}>
                             <div className={s.blockImg + ' ' + s.grid}>
                                 <NavLink to={'/profile/' + u.id}>
-                                    <img 
-                                    className={s.img + ' ' + s.grid} 
-                                    src={u.photos.small == null ?  "https://www.clipartmax.com/png/middle/247-2470496_what-do-people-think-round-icon-user-png.png" : u.photos.small} 
-                                    alt="" />
+                                    <img
+                                        className={s.img + ' ' + s.grid}
+                                        src={u.photos.small == null ? "https://www.clipartmax.com/png/middle/247-2470496_what-do-people-think-round-icon-user-png.png" : u.photos.small}
+                                        alt="" />
                                 </NavLink>
                             </div>
                             {u.followed
