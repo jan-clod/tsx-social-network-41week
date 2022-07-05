@@ -25,35 +25,58 @@ type PropsType = {
     follow: (userId: string) => void
     unfollow: (userId: string) => void
     setUsers: (users: Array<UserType>) => void
+    setCurrentPage: (currentPage: number) => void
+    setTotalUserCount: (totalCount: number) => void
 }
 class Users extends React.Component<PropsType> {
     componentDidMount() {
-        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-            console.log(response.data);
-            this.props.setUsers(response.data.items)
-        })
+        axios
+            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            .then(response => {
+                console.log(response.data);
+                this.props.setUsers(response.data.items)
+                this.props.setTotalUserCount(response.data.totalCount)
+            })
+    }
+
+    onPageChanged = (pageNumber: number) => {
+        this.props.setCurrentPage(pageNumber)
+        axios
+            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+            .then(response => {
+                console.log(response.data);
+                this.props.setUsers(response.data.items)
+            })
     }
 
     render() {
 
-        let pageCount = this.props.totalUserCount / this.props.totalUserCount
+        let pageCount = this.props.totalUserCount / this.props.pageSize
         let pages = []
-        for (let i = 1; i <= pageCount; i++) {
+        for (let i = 1; i <= 37; i++) {
             pages.push(i)
         }
         return (
             <div>
-                <div>
-                    {pages.map(p => {
-                        return <span className={ this.props.currentPage === p ? s.selectedPage : ''}>{p}</span>
-                    })}
-                </div>
                 <div className={s.TextField}>
                     <TextField
                         focused
                         fullWidth
                         label="Поиск пользователей"
                         id="fullWidth" />
+                </div>
+                <div>
+                    {
+                        pages.map(p => {
+                            return <span
+                                onClick={() => { this.onPageChanged(p) }}
+                                className={
+                                    this.props.currentPage === p
+                                        ? s.selectedPage
+                                        : s.noSelectPage
+                                }>{p}</span>
+                        })
+                    }
                 </div>
                 {
                     this.props.users.map(u => <div key={u.id}>

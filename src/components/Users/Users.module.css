@@ -19,46 +19,47 @@
   text-align: center;
   font-size: 30px;
 }
-
 .blockImg {
   margin: 1rem;
 }
-
 .img {
   width: 5rem;
   height: 5rem;
   border-radius: 50%;
   grid-area: img;
 }
-
 .button {
   grid-area: button;
   font-size: medium;
 }
-
 .fullName {
   font-size: 1.5rem;
   color: rgb(255, 255, 255);
   grid-area: fullName;
 }
-
 .status {
   font-size: 1rem;
   color: rgb(182, 187, 194);
   grid-area: status;
 }
-
 .location {
   font-size: 0.5rem;
   border: 1px solid rgb(226, 182, 182);
   color: rgb(174, 169, 169);
   grid-area: location;
 }
-
 .TextField{
   
   border-radius: 5px;
   background-color: rgb(42, 42, 42);
   margin-bottom: 1rem;
   padding: 1rem;
+}
+.selectedPage{
+  color: red;
+  padding: 10px;
+}
+.noSelectPage{
+  color: white;
+  padding: 10px;
 }
