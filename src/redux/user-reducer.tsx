@@ -2,6 +2,9 @@ import { v1 } from "uuid";
 
 export type UserStateType = {
     users: Array<UserType>
+    pageSize: number
+    totalUserCount: number
+    currentPage: number
 }
 export type PhotoType = {
     small: string
@@ -56,7 +59,10 @@ let initialState: UserStateType = {
             status: 'Иммутабельность',
             location: [{ city: 'Reikiiavick', country: 'hz' }]
         },
-    ]
+    ],
+    pageSize: 5,
+    totalUserCount: 0,
+    currentPage: 1
 }
 
 export const UserReducer = (state: UserStateType = initialState, action: ActionTypes): UserStateType => {
@@ -72,8 +78,9 @@ export const UserReducer = (state: UserStateType = initialState, action: ActionT
                 users: state.users.map(u => u.id === action.userId ? { ...u, followed: false } : u)
             }
         case "SET_USERS":
-            return { ...state, users: [...state.users, ...action.users]}
-
+            return {
+                 ...state, users: [...state.users, ...action.users]
+                }
         default:
             return { ...state }
 

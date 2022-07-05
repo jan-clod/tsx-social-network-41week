@@ -6,7 +6,10 @@ import Users from "./Users";
 
 let mapStateToProps = (state: AppStateType):UserStateType => { // контекстом приходит state
     return {
-        users: state.usersPage.users
+        users: state.usersPage.users,
+        pageSize: state.usersPage.pageSize,
+        totalUserCount: state.usersPage.totalUserCount,
+        currentPage: state.usersPage.currentPage
     }
 }
 let mapDispathToProps = (dispatch: (action: ActionTypes) => void) => {
