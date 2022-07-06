@@ -31,7 +31,7 @@ export type ActionTypes =
 
 let initialState: UserStateType = {
     users: [
-        {
+        /* {
             id: v1(),
             followed: false,
             photos: {
@@ -63,11 +63,11 @@ let initialState: UserStateType = {
             name: 'Main',
             status: 'Иммутабельность',
             location: [{ city: 'Reikiiavick', country: 'hz' }]
-        },
+        }, */
     ],
     pageSize: 20,
     totalUserCount: 0,
-    currentPage: 3
+    currentPage: 1
 }
 
 export const UserReducer = (state: UserStateType = initialState, action: ActionTypes): UserStateType => {
@@ -94,11 +94,9 @@ export const UserReducer = (state: UserStateType = initialState, action: ActionT
         }
         default:
             return { ...state }
-
-
-
     }
 };
+       
 export const followAC = (userId: string) => {
     return {
         type: "FOLLOW",
