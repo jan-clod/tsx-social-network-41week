@@ -63,3 +63,7 @@
   color: white;
   padding: 10px;
 }
+.preloader {
+  margin: 10px auto;
+  width: 100px;
+}

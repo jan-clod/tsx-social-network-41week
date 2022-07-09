@@ -9,6 +9,7 @@ type PropsType = {
     pageSize: number
     totalUserCount: number
     currentPage: number
+    isFething: boolean
     follow: (userId: string) => void
     unfollow: (userId: string) => void
     onPageChanged: (pageNumber: number) => void

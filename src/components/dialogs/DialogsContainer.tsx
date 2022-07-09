@@ -5,9 +5,9 @@ import { AppStateType } from "../../redux/redux-store";
 
 let mapStateToProps = (state: AppStateType):DialogsPageType => { // контекстом приходит state
     return {
-        dialogsData: state.dialogsPage.dialogsData,
-        messagesData: state.dialogsPage.messagesData,
-        newMessageBody: state.dialogsPage.newMessageBody
+        dialogsData: state.DialogsReducer.dialogsData,
+        messagesData: state.DialogsReducer.messagesData,
+        newMessageBody: state.DialogsReducer.newMessageBody
     }
 }
 let mapDispathToProps = (dispatch: (action: ActionTypes) => void) => {

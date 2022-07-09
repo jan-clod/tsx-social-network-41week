@@ -1,14 +1,28 @@
+import { ProfileItemsType } from "../../redux/profile-reducer";
 import { MyPostsContainer } from "./MyPosts/MyPostContainer";
 import s from "./Profile.module.css"
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
-export const Profile = () => {
+export type ProfilePropsType = {
+  profileData: ProfileItemsType[]
+  userId?: number
+  pathname?: string
+  search?: string
+  hash?: string
+  state?: null
+  key?: string
+}
+
+export const Profile: React.FC<ProfilePropsType> = ({
+  profileData, ...props
+}) => {
+  console.log(props.userId);
   return (
     <div className={s.Profile}>
       <div className={s.imgPack}>
-        <ProfileInfo />
+        <ProfileInfo profile={profileData} />
       </div>
-      <MyPostsContainer/>
+      <MyPostsContainer />
     </div>
   );
 };

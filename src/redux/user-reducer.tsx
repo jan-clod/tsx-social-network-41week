@@ -1,10 +1,9 @@
-import { v1 } from "uuid";
-
 export type UserStateType = {
     users: Array<UserType>
     pageSize: number
     totalUserCount: number
     currentPage: number
+    isFething: boolean
 }
 export type PhotoType = {
     small: string
@@ -23,11 +22,12 @@ export type LocationType = {
     country: string
 }
 export type ActionTypes =
-    | ReturnType<typeof followAC>
-    | ReturnType<typeof unfollowAC>
-    | ReturnType<typeof setUsersAC>
-    | ReturnType<typeof setCurrentPageAC>
-    | ReturnType<typeof setTotalUserCountAC>
+    | ReturnType<typeof follow>
+    | ReturnType<typeof unfollow>
+    | ReturnType<typeof setUsers>
+    | ReturnType<typeof setCurrentPage>
+    | ReturnType<typeof setTotalUserCount>
+    | ReturnType<typeof toggleIsFetching>
 
 let initialState: UserStateType = {
     users: [
@@ -67,7 +67,8 @@ let initialState: UserStateType = {
     ],
     pageSize: 20,
     totalUserCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFething: true
 }
 
 export const UserReducer = (state: UserStateType = initialState, action: ActionTypes): UserStateType => {
@@ -92,38 +93,47 @@ export const UserReducer = (state: UserStateType = initialState, action: ActionT
         case "SET_TOTAL_USER_COUNT": {
             return {...state, totalUserCount: action.totalCount}
         }
+        case "TOGGLE_IS_FETCHING": {
+            return {...state, isFething: action.isFething}
+        }
         default:
             return { ...state }
     }
 };
        
-export const followAC = (userId: string) => {
+export const follow = (userId: string) => {
     return {
         type: "FOLLOW",
         userId: userId
     } as const //воспринимать объект как константу
 }
-export const unfollowAC = (userId: string) => {
+export const unfollow = (userId: string) => {
     return {
         type: "UNFOLLOW",
         userId: userId
     } as const
 }
-export const setUsersAC = (users: Array<UserType>) => {
+export const setUsers = (users: Array<UserType>) => {
     return {
         type: "SET_USERS",
         users: users
     } as const
 }
-export const setCurrentPageAC = (currentPage : number) => {
+export const setCurrentPage = (currentPage : number) => {
     return {
         type: "SET_CURRENT_PAGE",
         currentPage: currentPage
     } as const
 }
-export const setTotalUserCountAC = (totalCount : number) => {
+export const setTotalUserCount = (totalCount : number) => {
     return {
         type: "SET_TOTAL_USER_COUNT",
         totalCount: totalCount
+    } as const
+}
+export const toggleIsFetching = (isFething : boolean) => {
+    return {
+        type: "TOGGLE_IS_FETCHING",
+        isFething: isFething
     } as const
 }

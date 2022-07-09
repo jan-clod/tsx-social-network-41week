@@ -5,7 +5,7 @@ import { Music } from './Music';
 
 let mapStateToProps = (state: AppStateType): musicpageType => {  // контекстом приходит state
     return {
-        items : state.musicpage.items
+        items : state.MusicReducer.items
     }
 }
 

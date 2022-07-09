@@ -1,52 +1,46 @@
 import './App.css';
 import { Navbar } from './components/navbar/Navbar';
-import { Profile } from './components/profile/Profile';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Music } from './components/Music/Music';
 import { News } from './components/News/News';
-import { Header } from './components/header/Header';
+import { HeaderConteiner } from './components/header/Header';
 import { DialogsContainer } from './components/dialogs/DialogsContainer';
 import { store } from './redux/redux-store';
 import { UsersContainer } from './components/Users/UsersContainer';
 import { MusicContainer } from './components/Music/MusicContainer';
+import { ProfileContainer } from './components/profile/ProfileContainer';
 
 export const App = (): JSX.Element => {
-  
+
   return (
     <BrowserRouter>
       <div className="app-wrapper">
-        <Header />
+        <HeaderConteiner />
         <Navbar />
         <div className='app-wrapper-content'>
           <Routes>
-            <Route
-              path='/dialogs/*'
-              element={
-                <DialogsContainer 
-                  messageData={store.getState().dialogsPage.messagesData}
-                />}>
-            </Route>
-            <Route
+            <Route path='/dialogs/*' element={
+              <DialogsContainer
+                messageData={store.getState().DialogsReducer.messagesData} />}
+            />
+                        <Route
               path='/profile/*'
               element={
-                <Profile
-                />}>
-            </Route>
+                <ProfileContainer
+                profileData={store.getState().ProfileReducer.profile}
 
-            <Route
-              path='/users'
-              element={<UsersContainer />}>
-            </Route>
+                />} /> 
 
-            <Route
-              path='/music'
-              element={<MusicContainer musicpage={store.getState().musicpage} />}>
-            </Route>
+            <Route path='/profile/:userId' element={<ProfileContainer profileData={store.getState().ProfileReducer.profile}/>} />
 
-            <Route
-              path='/news'
-              element={<News />}>
-            </Route>
+
+            <Route path='/users' element={<UsersContainer />} />
+
+            <Route path='/music' element={
+              <MusicContainer
+                musicpage={store.getState().MusicReducer} />}
+            />
+            <Route path='/news' element={<News />} />
+
           </Routes>
         </div>
       </div>

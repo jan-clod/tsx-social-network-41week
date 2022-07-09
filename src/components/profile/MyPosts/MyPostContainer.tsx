@@ -1,22 +1,23 @@
-import { ActionTypes, addPostAC, ProfilePageType, UpdateNewMessageAC } from "../../../redux/profile-reducer";
+import { ActionTypes, addPost, ProfilePageType, updateNewMessage } from "../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
 import { connect } from "react-redux";
 import { AppStateType } from "../../../redux/redux-store";
 
 let mapStateToProps = (state: AppStateType): ProfilePageType => {  // контекстом приходит state
     return {
-        postsData: state.profilePage.postsData,
-        newPostText: state.profilePage.newPostText
+        postsData: state.ProfileReducer.postsData,
+        newPostText: state.ProfileReducer.newPostText,
+        profile:state.ProfileReducer.profile
     }
 }
 let mapDispathToProps = (dispatch: (action: ActionTypes) => void) => {
     return {
 
         addPost: () => {
-            dispatch(addPostAC())
+            dispatch(addPost())
         },
         updateNewPostChange: (text:string) => {
-            dispatch(UpdateNewMessageAC(text))
+            dispatch(updateNewMessage(text))
         }
     } 
 }
