@@ -16,14 +16,55 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import axios from 'axios';
+import { connect } from "react-redux";
+import { SetUserDataAC } from "../../redux/auth-reducer"
+import { AppStateType } from '../../redux/redux-store';
 
-export const Header = () => {
-  return (
-    <div className={s.header}>
-      <Head />
-    </div>
-  );
+type PropsType = {
+  SetUserDataAC: (id: number | null,
+    email: string | null,
+    login: string | null,
+  ) => void
+  isAuth: boolean
+  login: string | null
 }
+export class Header extends React.Component<PropsType> {
+  componentDidMount = () => {
+    axios
+      .get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
+        withCredentials: true
+      })//отправлять cookie
+      .then(response => {
+        if (response.data.resultCode === 0) {
+          let { id, email, login } = response.data.data
+          this.props.SetUserDataAC(id, email, login)
+          console.log(id, email, login);
+        }
+      })
+  }
+  render() {
+    return (
+      <div className={s.header} >
+        {/* {this.props.isAuth ? <p>{this.props.login}</p> : <p>Войти</p>} */}
+        <Head
+          isAuth={this.props.isAuth}
+          login={this.props.login}
+        />
+      </div>
+    )
+  };
+}
+
+const mapStateToProps = (state: AppStateType) => ({
+  isAuth: state.AuthReducer.isAuth,
+  login: state.AuthReducer.login,
+})
+
+export const HeaderConteiner = connect(mapStateToProps, { SetUserDataAC })(Header)
+
+
+
 
 const Search = styled('div')(({ theme }) => ({
 
@@ -63,7 +104,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
-export default function Head() {
+
+type headPropsType = {
+  isAuth: boolean
+  login: string | null
+}
+
+export default function Head(props: headPropsType) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
@@ -78,6 +125,7 @@ export default function Head() {
   const handleMenuClose = () => {
     setAnchorEl(null);
     handleMobileMenuClose();
+    alert('Вышли Успешно')
   };
   const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setMobileMoreAnchorEl(event.currentTarget);
@@ -99,8 +147,14 @@ export default function Head() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      {
+        props.isAuth
+          ? <><MenuItem onClick={() => alert('не тыкай')}>{props.login}</MenuItem>
+            <MenuItem onClick={handleMenuClose}>Выйти</MenuItem>
+          </>
+          : <MenuItem onClick={handleMenuClose}>Регистрация</MenuItem>
+      }
+
     </Menu>
   );
   const mobileMenuId = 'primary-search-account-menu-mobile';
@@ -173,7 +227,11 @@ export default function Head() {
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-            SocialNetwork
+            {
+              props.isAuth
+                ? <p>{props.login}</p>
+                : <p>Social Network</p>
+            }
           </Typography>
           <Search>
             <SearchIconWrapper>
