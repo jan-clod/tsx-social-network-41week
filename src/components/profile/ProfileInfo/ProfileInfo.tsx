@@ -1,4 +1,4 @@
-import { Box, CircularProgress, LinearProgress } from '@mui/material';
+import { Box, CircularProgress } from '@mui/material';
 import {  ProfileItemsType } from '../../../redux/profile-reducer';
 import s from './ProfileInfo.module.css';
 
@@ -17,9 +17,7 @@ const ProfileInfo = (props: ProfileInfoType) => {
 debugger
   return <div className={s.ProfileInfoBlock}>
     <div className={s.imgPack}>
-     {/*  <img src='https://sun2.beltelecom-by-minsk.userapi.com/s/v1/if1/c3opGqEc6rlIs1s1heXXe6z7s3RnR_8TNCap2uGTlwJwc21_SRc6__84sSbCWToYpTxqxJJZ.jpg?size=200x200&quality=96&crop=236,0,607,607&ava=1' /> */} 
-      <img src={props.profile[0].photos.large ? props.profile[0].photos.large : '' } />
-     
+      <img alt="description of " src={props.profile[0].photos.large ? props.profile[0].photos.large : '' } />
      </div>
     <div className={s.nameBlock}>
       <h2>

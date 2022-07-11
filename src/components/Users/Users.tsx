@@ -3,6 +3,7 @@ import { Button, TextField } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import s from "./Users.module.css";
 import { UserType } from "../../redux/user-reducer";
+import axios from "axios";
 
 type PropsType = {
     users: Array<UserType>
@@ -63,10 +64,36 @@ export let Users = (props: PropsType) => {
                                 variant="contained"
                                 color="error"
                                 size="small"
-                                onClick={() => { props.unfollow(u.id) }}>Подписаться</Button>
+                                onClick={() => {
+                                    axios
+                                        .delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
+                                            withCredentials: true,
+                                            headers: {
+                                                'API-KEY': ' 9ccf0b02-7ebc-48a8-afa1-03312505ce4a'
+                                            }
+                                        })
+                                        .then(response => {
+                                            if (response.data.resultCode === 0) {
+                                                props.unfollow(u.id)
+                                            }
+                                        })
+                                }}>Подписаться</Button>
                             : <Button
                                 className={s.button + ' ' + s.grid}
-                                onClick={() => { props.follow(u.id) }}>Отписаться</Button>
+                                onClick={() => {
+                                    axios
+                                        .post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
+                                            withCredentials: true,
+                                            headers: {
+                                                'API-KEY': ' 9ccf0b02-7ebc-48a8-afa1-03312505ce4a'
+                                            }
+                                        })
+                                        .then(response => {
+                                            if (response.data.resultCode === 0) {
+                                                props.follow(u.id)
+                                            }
+                                        })
+                                }}>Отписаться</Button>
                         }
                         <div className={s.fullName + ' ' + s.grid}>{u.name}</div>
                         <div className={s.status + ' ' + s.grid}>{u.status}</div>

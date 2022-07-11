@@ -1,5 +1,3 @@
-import { v1 } from "uuid";
-
 export type trackType = {
     name: string
     preview_url: string
