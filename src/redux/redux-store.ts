@@ -1,9 +1,10 @@
 import { ProfileReducer } from "./profile-reducer";
 import { DialogsReducer } from "./dialogs-reducer";
-import { combineReducers, createStore } from "redux";
+import { applyMiddleware, combineReducers, createStore } from "redux";
 import { UserReducer } from "./user-reducer";
 import { MusicReducer } from "./music-reducer";
 import { AuthReducer } from "./auth-reducer";
+import  thankMiddleware  from "redux-thunk"
 
 export let reducers = combineReducers({
   ProfileReducer,
@@ -15,4 +16,4 @@ export let reducers = combineReducers({
 
 export type AppStateType = ReturnType<typeof reducers>;
 
-export let store = createStore(reducers); //reducers, отдали их стору
+export let store = createStore(reducers, applyMiddleware(thankMiddleware)); //reducers, отдали их стору,  applyMiddleware() - из редакса

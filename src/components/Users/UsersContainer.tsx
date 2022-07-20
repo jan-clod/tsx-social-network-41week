@@ -1,9 +1,11 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
+import { Box } from '@mui/material';
 import LinearProgress from '@mui/material/LinearProgress';
 import { connect } from "react-redux"
 import {
-    ActionTypes,
+    getUsersThunkCreator,
+    followTC,
+    unFollowTC,
     follow,
     setCurrentPage,
     setTotalUserCount,
@@ -15,8 +17,8 @@ import {
 } from "../../redux/user-reducer"
 import { AppStateType } from "../../redux/redux-store";
 import { Users } from "./Users";
-import axios from "axios";
 import s from "./Users.module.css";
+import { usersApi } from '../../api/api';
 
 export type PropsType = {
     users: Array<UserType>
@@ -30,37 +32,33 @@ export type PropsType = {
     setCurrentPage: (currentPage: number) => void
     setTotalUserCount: (totalCount: number) => void
     toggleIsFetching: (isFething: boolean) => void
+    getUsersThunkCreator: (currentPage: number, pageSize: number) => void
+    followTC: (userId: string) => void
+    unFollowTC: (userId: string) => void
 }
 
 class UsersContainersss extends React.Component<PropsType> {
     componentDidMount() {
-        this.props.toggleIsFetching(true)
-        axios
-            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
-                withCredentials: true,
-            })
-            .then(response => {
-                console.log(response.data);
-                this.props.toggleIsFetching(false)
-                this.props.setUsers(response.data.items)
-                this.props.setTotalUserCount(response.data.totalCount)
-            })
+        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
+        /* this.props.toggleIsFetching(true)
+
+        usersApi.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
+            this.props.toggleIsFetching(false)
+            this.props.setUsers(data.items)
+            this.props.setTotalUserCount(data.totalCount)
+        }) */
     }
     onPageChanged = (pageNumber: number) => {
+        //this.props.getUsersThunkCreator(this.props.currentPage, pageNumber)
         this.props.toggleIsFetching(true)
         this.props.setCurrentPage(pageNumber)
-        axios
-            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, {
-                withCredentials: true,
-            })
-            .then(response => {
-                console.log(response.data);
-                this.props.setUsers(response.data.items)
-                this.props.toggleIsFetching(false)
-            })
+
+        usersApi.getUsers(pageNumber, this.props.pageSize).then(data => {
+            this.props.setUsers(data.items)
+            this.props.toggleIsFetching(false)
+        })
     }
     render() {
-
         return (
             <>
                 {
@@ -76,6 +74,8 @@ class UsersContainersss extends React.Component<PropsType> {
                             follow={this.props.follow}
                             unfollow={this.props.unfollow}
                             isFething={this.props.isFething}
+                            followTC={this.props.followTC}
+                            unFollowTC={this.props.unFollowTC}
                         />
 
                 }
@@ -94,13 +94,12 @@ let mapStateToProps = (state: AppStateType): UserStateType => { // контек�
         isFething: state.UserReducer.isFething,
     }
 }
+let AC = { getUsersThunkCreator, followTC, unFollowTC, follow, unfollow, setUsers, setCurrentPage, setTotalUserCount, toggleIsFetching }
 
-export const UsersContainer = connect(mapStateToProps, { follow, unfollow, setUsers, setCurrentPage, setTotalUserCount, toggleIsFetching })(UsersContainersss)
+export const UsersContainer = connect(mapStateToProps, AC)(UsersContainersss)
 //Dialogs презинтационная компонента
 // в connecte у нас userConteiner а уже в нем users
 //вложeнность: hoc => userConteiner => users
-
-
 /* let mapDispathToProps = (dispatch: (action: ActionTypes) => void) => {
     return {
         follow: (userId: string) => {

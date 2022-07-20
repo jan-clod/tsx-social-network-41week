@@ -3,7 +3,7 @@ import { Button, TextField } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import s from "./Users.module.css";
 import { UserType } from "../../redux/user-reducer";
-import axios from "axios";
+import { usersApi } from "../../api/api";
 
 type PropsType = {
     users: Array<UserType>
@@ -14,11 +14,12 @@ type PropsType = {
     follow: (userId: string) => void
     unfollow: (userId: string) => void
     onPageChanged: (pageNumber: number) => void
+    followTC: (userId: string) => void
+    unFollowTC: (userId: string) => void
 }
 
 export let Users = (props: PropsType) => {
-
-    let pageCount = Math.ceil(props.totalUserCount / props.pageSize)
+    // let pageCount = Math.ceil(props.totalUserCount / props.pageSize)
     let pages = []
     for (let i = 1; i <= 37; i++) {
         pages.push(i)
@@ -58,45 +59,28 @@ export let Users = (props: PropsType) => {
                                     alt="" />
                             </NavLink>
                         </div>
-                        {u.followed
-                            ? <Button
-                                className={s.button + ' ' + s.grid}
-                                variant="contained"
-                                color="error"
-                                size="small"
-                                onClick={() => {
-                                    axios
-                                        .delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                                            withCredentials: true,
-                                            headers: {
-                                                'API-KEY': ' 9ccf0b02-7ebc-48a8-afa1-03312505ce4a'
-                                            }
-                                        })
-                                        .then(response => {
-                                            if (response.data.resultCode === 0) {
-                                                props.unfollow(u.id)
-                                            }
-                                        })
-                                }}>Подписаться</Button>
-                            : <Button
-                                className={s.button + ' ' + s.grid}
-                                onClick={() => {
-                                    axios
-                                        .post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
-                                            withCredentials: true,
-                                            headers: {
-                                                'API-KEY': ' 9ccf0b02-7ebc-48a8-afa1-03312505ce4a'
-                                            }
-                                        })
-                                        .then(response => {
-                                            if (response.data.resultCode === 0) {
-                                                props.follow(u.id)
-                                            }
-                                        })
-                                }}>Отписаться</Button>
+                        {
+                            u.followed
+                                ? <Button
+                                    className={s.button + ' ' + s.grid}
+                                    variant="contained"
+                                    size="small"
+                                    onClick={() => {
+                                        props.unFollowTC(u.id)
+                                    }}>Подписаться</Button>
+                                : <Button
+                                    className={s.button + ' ' + s.grid}
+                                    onClick={() => {
+                                        props.followTC(u.id)
+                                    }}>Отписаться</Button>
                         }
-                        <div className={s.fullName + ' ' + s.grid}>{u.name}</div>
-                        <div className={s.status + ' ' + s.grid}>{u.status}</div>
+
+                        <div className={s.fullName + ' ' + s.grid}>
+                            {u.name}
+                        </div>
+                        <div className={s.status + ' ' + s.grid}>
+                            {u.status}
+                        </div>
 
                         {/*                       <div className={s.location + ' ' + s.grid}>
                                 <div>Belarus</div>
