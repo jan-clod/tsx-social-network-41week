@@ -17,28 +17,18 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { connect } from "react-redux";
-import { SetUserDataAC } from "../../redux/auth-reducer"
+import {  getAuthUserDataTC } from "../../redux/auth-reducer"
 import { AppStateType } from '../../redux/redux-store';
-import { authApi } from '../../api/api';
 
 type PropsType = {
-  SetUserDataAC: (id: number | null,
-    email: string | null,
-    login: string | null,
-  ) => void
+  getAuthUserDataTC: () => void
+
   isAuth: boolean
   login: string | null
 }
 export class Header extends React.Component<PropsType> {
   componentDidMount = () => {
-    authApi.me()
-      .then(response => {
-        if (response.data.resultCode === 0) {
-          let { id, email, login } = response.data.data
-          this.props.SetUserDataAC(id, email, login)
-          console.log(id, email, login);
-        }
-      })
+    this.props.getAuthUserDataTC()
   }
   render() {
     return (
@@ -58,7 +48,7 @@ const mapStateToProps = (state: AppStateType) => ({
   login: state.AuthReducer.login,
 })
 
-export const HeaderConteiner = connect(mapStateToProps, { SetUserDataAC })(Header)
+export const HeaderConteiner = connect(mapStateToProps, {  getAuthUserDataTC })(Header)
 
 
 

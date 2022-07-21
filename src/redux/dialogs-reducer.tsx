@@ -1,15 +1,12 @@
 import { v1 } from "uuid";
 
-export type ActionTypes =
-    | ReturnType<typeof UpdateNewPostAC>
-    | ReturnType<typeof SendMessageAC>;
 
 export type DialogsPageType = {
     dialogsData: Array<DialogsDataType>;
     messagesData: Array<MessagesDataType>;
-    newMessageBody: string;
+    newMessageBody: string
 };
-type MessagesDataType = {
+export type MessagesDataType = {
     id: string;
     message: Array<MessageReduserType>;
     sender: 'You' | 'I';
@@ -23,6 +20,9 @@ export type MessageReduserType = {
     id: string
     message: string
 }
+export type ActionTypes =
+    | ReturnType<typeof UpdateNewPostAC>
+    | ReturnType<typeof SendMessageAC>;
 
 let initialState: DialogsPageType = {
     dialogsData: [

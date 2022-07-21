@@ -8,6 +8,7 @@ import { store } from './redux/redux-store';
 import { UsersContainer } from './components/Users/UsersContainer';
 import { MusicContainer } from './components/Music/MusicContainer';
 import { ProfileContainer } from './components/profile/ProfileContainer';
+import { Login } from './components/login/Login';
 
 export const App = (): JSX.Element => {
 
@@ -18,20 +19,20 @@ export const App = (): JSX.Element => {
         <Navbar />
         <div className='app-wrapper-content'>
           <Routes>
+
             <Route path='/dialogs/*' element={
               <DialogsContainer
                 messageData={store.getState().DialogsReducer.messagesData} />}
             />
-                        <Route
-              path='/profile/*'
+
+            <Route path='/profile/*'
               element={
                 <ProfileContainer
-                profileData={store.getState().ProfileReducer.profile}
+                  profileData={store.getState().ProfileReducer.profile}
+                />}
+            />
 
-                />} /> 
-
-            <Route path='/profile/:userId' element={<ProfileContainer profileData={store.getState().ProfileReducer.profile}/>} />
-
+            <Route path='/profile/:userId' element={<ProfileContainer profileData={store.getState().ProfileReducer.profile} />} />
 
             <Route path='/users' element={<UsersContainer />} />
 
@@ -40,6 +41,8 @@ export const App = (): JSX.Element => {
                 musicpage={store.getState().MusicReducer} />}
             />
             <Route path='/news' element={<News />} />
+
+            <Route path='/login' element={<Login />} />
 
           </Routes>
         </div>

@@ -1,3 +1,5 @@
+import { authApi, usersApi } from "../api/api"
+
 export type trackType = {
     name: string
     preview_url: string
@@ -20,7 +22,7 @@ let initialState: authType = {
     userId: null,
     email: null,
     login: null,
-    isAuth:false
+    isAuth: false
 }
 
 export const AuthReducer = (state: authType = initialState, action: ActionTypes): authType => {
@@ -54,4 +56,17 @@ export const SetUserDataAC = (
             login,
         }
     } as const; //воспринимать объект как константу
+}
+
+export function getAuthUserDataTC() {
+    return (dispatch: (param: ActionTypes) => void) => {
+        authApi.me()
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    let { id, email, login } = response.data.data
+                    dispatch(SetUserDataAC(id, email, login))
+                    console.log(id, email, login);
+                }
+            })
+    }
 }

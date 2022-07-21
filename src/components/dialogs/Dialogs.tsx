@@ -26,6 +26,7 @@ type PropsType = {
   dialogsData: Array<DialogsType>
   messageData: Array<MessageType>
   newMessageBody: string
+  isAuth: boolean
 }
 const Item = styled(Paper)(({ theme }: any) => ({
   backgroundColor: 'rgb(42, 42, 42)',
@@ -58,6 +59,8 @@ export const Dialogs = (props: PropsType) => {
   const onKeyPressHandler = (e: KeyboardEvent<HTMLDivElement>) => {
     e.key === 'Enter' && props.onClickSendMessage()
   }
+
+  alert(props.isAuth)
   return (
     <nav className={s.dialogs}>
       <div className={s.dialogsItems}>
