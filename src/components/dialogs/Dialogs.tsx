@@ -10,6 +10,7 @@ import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import { MessageReduserType } from "../../redux/dialogs-reducer";
+import { Navigate } from "react-router-dom";
 
 type DialogsType = {
   id: string
@@ -60,7 +61,7 @@ export const Dialogs = (props: PropsType) => {
     e.key === 'Enter' && props.onClickSendMessage()
   }
 
-  alert(props.isAuth)
+  if (!props.isAuth) return <Navigate  to={"/login"}/>
   return (
     <nav className={s.dialogs}>
       <div className={s.dialogsItems}>

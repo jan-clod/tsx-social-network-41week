@@ -1,4 +1,3 @@
-import axios from "axios";
 import React from "react";
 import { connect } from "react-redux";
 import { Profile, ProfilePropsType } from "./Profile";
@@ -10,10 +9,10 @@ import {
     getUserProFileTC
 } from "../../redux/profile-reducer"
 import { AppStateType } from "../../redux/redux-store";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { usersApi } from "../../api/api";
- 
-const withRouter = (Component:any)  => (props:ProfilePropsType) => {
+import { Navigate, useParams } from "react-router-dom";
+import { authType } from "../dialogs/DialogsContainer";
+
+const withRouter = (Component: any) => (props: ProfilePropsType) => {
     const params = useParams();
     return (
         <Component
@@ -21,17 +20,18 @@ const withRouter = (Component:any)  => (props:ProfilePropsType) => {
         />
     );
 };
-class ProfileContainers extends React.Component<ProfilePropsType> {
+class ProfileContainers extends React.Component<ProfilePropsType & authType> {
 
     componentDidMount() {
         let userId = this.props.userId;
-        if (!userId){
-            userId=2;
+        if (!userId) {
+            userId = 2;
         }
         this.props.getUserProFileTC(userId)
     }
 
     render = () => {
+        if (!this.props.isAuth) return <Navigate to={"/login"} />
 
         return (
             <div className={s.ProfileContainer}>
@@ -40,9 +40,9 @@ class ProfileContainers extends React.Component<ProfilePropsType> {
         )
     }
 }
-
 let mapStateToProps = (state: AppStateType) => ({
-    profile: state.ProfileReducer.profile
+    profile: state.ProfileReducer.profile,
+    isAuth: state.AuthReducer.isAuth
 })
 
 export const ProfileContainer =

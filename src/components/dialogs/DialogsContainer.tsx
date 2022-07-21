@@ -8,7 +8,7 @@ import { Dialogs } from "./Dialogs";
 import { connect } from "react-redux";
 import { AppStateType } from "../../redux/redux-store";
 
-type authType = { isAuth: boolean }
+export type authType = { isAuth: boolean }
 type mapStateToPropsType = DialogsPageType & authType
 
 
