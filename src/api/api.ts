@@ -14,14 +14,24 @@ export const usersApi = {
       .get(`users?page=${currentPage}&count=${pageSize}`)
       .then((response) => response.data);
   },
-
   followUsers(id: string) {
-    return instance
-    .post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`);
+    return instance.post(`follow/${id}`);
   },
-
   unfollowUsers(id: string) {
-    return instance
-    .delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`);
+    return instance.delete(`follow/${id}`);
+  },
+  getProfile(userId: number) {
+    return instance.get(`profile/` + userId);
   },
 };
+export const authApi = {
+  me() {
+    return instance.get(`auth/me`);
+  },
+};
+
+/* 
+  const authApi: {
+    me(): Promise<AxiosResponse<any, any>>;
+  }
+*/

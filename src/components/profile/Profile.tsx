@@ -11,6 +11,7 @@ export type ProfilePropsType = {
   hash?: string
   state?: null
   key?: string
+  getUserProFileTC: (userId: number) => void
 }
 
 export const Profile: React.FC<ProfilePropsType> = ({

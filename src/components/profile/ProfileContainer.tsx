@@ -6,10 +6,12 @@ import s from "./Profile.module.css"
 import {
     addPost,
     updateNewMessage,
-    setUserProFile
+    setUserProFile,
+    getUserProFileTC
 } from "../../redux/profile-reducer"
 import { AppStateType } from "../../redux/redux-store";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { usersApi } from "../../api/api";
  
 const withRouter = (Component:any)  => (props:ProfilePropsType) => {
     const params = useParams();
@@ -26,11 +28,7 @@ class ProfileContainers extends React.Component<ProfilePropsType> {
         if (!userId){
             userId=2;
         }
-        axios
-        .get(`https://social-network.samuraijs.com/api/1.0/profile/`+userId)
-            .then(response => {
-                console.log(response.data);
-            })
+        this.props.getUserProFileTC(userId)
     }
 
     render = () => {
@@ -48,5 +46,5 @@ let mapStateToProps = (state: AppStateType) => ({
 })
 
 export const ProfileContainer =
-    connect(mapStateToProps, { addPost, updateNewMessage, setUserProFile })
+    connect(mapStateToProps, { getUserProFileTC, addPost, updateNewMessage, setUserProFile })
         (withRouter(ProfileContainers))

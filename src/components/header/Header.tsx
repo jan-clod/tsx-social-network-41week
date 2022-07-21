@@ -16,10 +16,10 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
-import axios from 'axios';
 import { connect } from "react-redux";
 import { SetUserDataAC } from "../../redux/auth-reducer"
 import { AppStateType } from '../../redux/redux-store';
+import { authApi } from '../../api/api';
 
 type PropsType = {
   SetUserDataAC: (id: number | null,
@@ -31,10 +31,7 @@ type PropsType = {
 }
 export class Header extends React.Component<PropsType> {
   componentDidMount = () => {
-    axios
-      .get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
-        withCredentials: true
-      })//отправлять cookie
+    authApi.me()
       .then(response => {
         if (response.data.resultCode === 0) {
           let { id, email, login } = response.data.data

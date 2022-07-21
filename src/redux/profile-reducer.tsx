@@ -1,4 +1,5 @@
 import { v1 } from "uuid";
+import { usersApi } from "../api/api";
 
 export type PostsDataType = {
     id: string;
@@ -96,4 +97,14 @@ export const setUserProFile = (profile: ProfileItemsType[]) => {
         type: "SET_USERS_PROFILE",
         profile: profile
     } as const
+}
+export function getUserProFileTC(userId: number) {
+    return (dispatch: (param: ActionTypes) => void) => {
+        usersApi.getProfile(userId)
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(setUserProFile(response.data))
+                }
+            })
+    }
 }
