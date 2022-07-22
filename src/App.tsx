@@ -7,7 +7,7 @@ import { DialogsContainer } from './components/dialogs/DialogsContainer';
 import { store } from './redux/redux-store';
 import { UsersContainer } from './components/Users/UsersContainer';
 import { MusicContainer } from './components/Music/MusicContainer';
-import { ProfileContainer } from './components/profile/ProfileContainer';
+import { ProfileContainerConnect } from './components/profile/ProfileContainer';
 import { Login } from './components/login/Login';
 
 export const App = (): JSX.Element => {
@@ -27,12 +27,12 @@ export const App = (): JSX.Element => {
 
             <Route path='/profile/*'
               element={
-                <ProfileContainer
+                <ProfileContainerConnect
                   profileData={store.getState().ProfileReducer.profile}
                 />}
             />
 
-            <Route path='/profile/:userId' element={<ProfileContainer profileData={store.getState().ProfileReducer.profile} />} />
+            <Route path='/profile/:userId' element={<ProfileContainerConnect profileData={store.getState().ProfileReducer.profile} />} />
 
             <Route path='/users' element={<UsersContainer />} />
 

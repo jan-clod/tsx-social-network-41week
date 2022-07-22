@@ -4,15 +4,15 @@ import {
     SendMessageAC,
     UpdateNewPostAC
 } from "../../redux/dialogs-reducer";
-import { Dialogs } from "./Dialogs";
+import { Dialogs, DialogsPropsType } from "./Dialogs";
 import { connect } from "react-redux";
 import { AppStateType } from "../../redux/redux-store";
+import { Navigate } from "react-router-dom";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 
 export type authType = { isAuth: boolean }
-type mapStateToPropsType = DialogsPageType & authType
 
-
-let mapStateToProps = (state: AppStateType): mapStateToPropsType => { // контекстом приходит state
+let mapStateToProps = (state: AppStateType): DialogsPageType & authType => { // контекстом приходит state
     return {
         dialogsData: state.DialogsReducer.dialogsData,
         messagesData: state.DialogsReducer.messagesData,
@@ -22,14 +22,11 @@ let mapStateToProps = (state: AppStateType): mapStateToPropsType => { // кон�
 }
 let mapDispathToProps = (dispatch: (action: ActionTypes) => void) => {
     return {
-
-        onClickSendMessage: () => {
-            dispatch(SendMessageAC())
-        },
-        onNewMessageChange: (body: string) => {
-            dispatch(UpdateNewPostAC(body))
-        }
+        onClickSendMessage: () => dispatch(SendMessageAC()),
+        onNewMessageChange: (body: string) => dispatch(UpdateNewPostAC(body))
     }
 }
-export const DialogsContainer = connect(mapStateToProps, mapDispathToProps)(Dialogs)
+
+export const DialogsContainer =
+ connect(mapStateToProps, mapDispathToProps)(Dialogs)
 //Dialogs презинтационная компонента

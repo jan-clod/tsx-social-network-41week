@@ -1,4 +1,4 @@
-import { ChangeEvent, KeyboardEvent } from "react";
+import { ChangeEvent, Component, KeyboardEvent } from "react";
 import s from "./Dialogs.module.css";
 import DialogsItem from "./DialogsItem/DialogsItem";
 import MessagesItem from "./Message/Message";
@@ -21,7 +21,7 @@ type MessageType = {
   message: Array<MessageReduserType>;
   sender: 'You' | 'I';
 }
-type PropsType = {
+export type DialogsPropsType = {
   onClickSendMessage: () => void
   onNewMessageChange: (e: string) => void
   dialogsData: Array<DialogsType>
@@ -35,7 +35,7 @@ const Item = styled(Paper)(({ theme }: any) => ({
   textAlign: 'left',
 }));
 
-export const Dialogs = (props: PropsType) => {
+export const Dialogs = (props: DialogsPropsType)  => {
   let dialogsElements =
     props.dialogsData.map(d =>
       <Box sx={{ minWidth: '100%' }} key={d.id}>
@@ -60,8 +60,7 @@ export const Dialogs = (props: PropsType) => {
   const onKeyPressHandler = (e: KeyboardEvent<HTMLDivElement>) => {
     e.key === 'Enter' && props.onClickSendMessage()
   }
-
-  if (!props.isAuth) return <Navigate  to={"/login"}/>
+  if (!props.isAuth) return <Navigate to={"/login"} />
   return (
     <nav className={s.dialogs}>
       <div className={s.dialogsItems}>
@@ -100,4 +99,4 @@ export const Dialogs = (props: PropsType) => {
       </div>
     </nav>
   );
-};
+}; 
