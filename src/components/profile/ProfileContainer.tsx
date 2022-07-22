@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
+import { connect, ConnectProps } from "react-redux";
 import { Profile, ProfilePropsType } from "./Profile";
 import s from "./Profile.module.css"
 import {
@@ -9,17 +9,24 @@ import {
     getUserProFileTC
 } from "../../redux/profile-reducer"
 import { AppStateType } from "../../redux/redux-store";
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useMatch, useParams } from "react-router-dom";
 import { authType } from "../dialogs/DialogsContainer";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
-const withRouter = (Component: any) => (props: ProfilePropsType) => {
-    const params = useParams();
-    return (
-        <Component
+
+export const withRouter = (Component: any) => {
+    let RouterComponent = (props: ProfilePropsType) => {
+        const match = useMatch('/profile/:userId/');
+        const params = useParams()
+        return <Component
             {...props}
-        />
-    );
-};
+            match={match}
+            param={params} />;
+    }
+    return RouterComponent;
+}
+
 class ProfileContainers extends React.Component<ProfilePropsType & authType> {
 
     componentDidMount() {
@@ -31,8 +38,6 @@ class ProfileContainers extends React.Component<ProfilePropsType & authType> {
     }
 
     render = () => {
-        if (!this.props.isAuth) return <Navigate to={"/login"} />
-
         return (
             <div className={s.ProfileContainer}>
                 <Profile {...this.props} />
@@ -40,11 +45,14 @@ class ProfileContainers extends React.Component<ProfilePropsType & authType> {
         )
     }
 }
+
 let mapStateToProps = (state: AppStateType) => ({
     profile: state.ProfileReducer.profile,
     isAuth: state.AuthReducer.isAuth
 })
 
-export const ProfileContainer =
+export const ProfileContainerConnect:any= compose(
+    withAuthRedirect,
+    withRouter,
     connect(mapStateToProps, { getUserProFileTC, addPost, updateNewMessage, setUserProFile })
-        (withRouter(ProfileContainers))
+)(ProfileContainers)    
