@@ -29,9 +29,14 @@ export const authApi = {
     return instance.get(`auth/me`);
   },
 };
-
-/* 
-  const authApi: {
-    me(): Promise<AxiosResponse<any, any>>;
+export const profileApi = {
+  getProfile(userId: number) {
+    return usersApi.getProfile(userId)
+  },
+  getStatus(userId: number) {
+    return instance.get( `profile/status/` + userId)
+  },
+  updateStatus(statut:string) {
+    return instance.put(`profile/status/`, {status: statut} )
   }
-*/
+};

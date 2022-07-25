@@ -7,7 +7,9 @@ let mapStateToProps = (state: AppStateType): ProfilePageType => {  // конте
     return {
         postsData: state.ProfileReducer.postsData,
         newPostText: state.ProfileReducer.newPostText,
-        profile:state.ProfileReducer.profile
+        profile: state.ProfileReducer.profile,
+        status: state.ProfileReducer.status
+
     }
 }
 let mapDispathToProps = (dispatch: (action: ActionTypes) => void) => {
@@ -16,10 +18,10 @@ let mapDispathToProps = (dispatch: (action: ActionTypes) => void) => {
         addPost: () => {
             dispatch(addPost())
         },
-        updateNewPostChange: (text:string) => {
+        updateNewPostChange: (text: string) => {
             dispatch(updateNewMessage(text))
         }
-    } 
+    }
 }
 
 export const MyPostsContainer = connect(mapStateToProps, mapDispathToProps)(MyPosts)
