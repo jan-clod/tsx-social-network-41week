@@ -2,3 +2,9 @@
   color: aliceblue;
   margin: 100px 45%;
 }
+.error{
+  color:rgb(212, 86, 86);
+}
+.password{
+  color:rgb(9, 111, 254)
+}

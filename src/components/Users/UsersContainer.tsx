@@ -11,7 +11,7 @@ import {
     setTotalUserCount,
     setUsers,
     toggleIsFetching,
-    unfollow,
+    unfollow, 
     UserStateType,
     UserType
 } from "../../redux/user-reducer"
@@ -32,31 +32,18 @@ export type PropsType = {
     setCurrentPage: (currentPage: number) => void
     setTotalUserCount: (totalCount: number) => void
     toggleIsFetching: (isFething: boolean) => void
-    getUsersThunkCreator: (currentPage: number, pageSize: number) => void
+    getUsersThunkCreator: (currentPage: number, pageSize: number, term: string) => void
     followTC: (userId: string) => void
     unFollowTC: (userId: string) => void
 }
 
 class UsersContainersss extends React.Component<PropsType> {
     componentDidMount() {
-        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
-        /* this.props.toggleIsFetching(true)
-
-        usersApi.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-            this.props.toggleIsFetching(false)
-            this.props.setUsers(data.items)
-            this.props.setTotalUserCount(data.totalCount)
-        }) */
+        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize,"")
     }
     onPageChanged = (pageNumber: number) => {
-        //this.props.getUsersThunkCreator(this.props.currentPage, pageNumber)
-        this.props.toggleIsFetching(true)
         this.props.setCurrentPage(pageNumber)
-
-        usersApi.getUsers(pageNumber, this.props.pageSize).then(data => {
-            this.props.setUsers(data.items)
-            this.props.toggleIsFetching(false)
-        })
+        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize,"")
     }
     render() {
         return (

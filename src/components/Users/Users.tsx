@@ -4,6 +4,8 @@ import { NavLink } from "react-router-dom";
 import s from "./Users.module.css";
 import { UserType } from "../../redux/user-reducer";
 import { usersApi } from "../../api/api";
+import { ErrorMessage, Field, Form, Formik, FormikHelpers, FormikValues } from "formik";
+import loginForm from "../formValidation/LoginForm";
 
 type PropsType = {
     users: Array<UserType>
@@ -28,11 +30,12 @@ export let Users = (props: PropsType) => {
     return (
         <div>
             <div className={s.TextField}>
-                <TextField
+                <UserSearhForm />
+                {/* <TextField
                     focused
                     fullWidth
                     label="Поиск пользователей"
-                    id="fullWidth" />
+                    id="fullWidth" /> */}
             </div>
             <div>
                 {
@@ -63,16 +66,16 @@ export let Users = (props: PropsType) => {
                             u.followed
                                 ? <Button
                                     className={s.button + ' ' + s.grid}
-                                    variant="contained"
                                     size="small"
                                     onClick={() => {
                                         props.unFollowTC(u.id)
-                                    }}>Подписаться</Button>
+                                    }}>Отписаться</Button>
                                 : <Button
                                     className={s.button + ' ' + s.grid}
+                                    variant="contained"
                                     onClick={() => {
                                         props.followTC(u.id)
-                                    }}>Отписаться</Button>
+                                    }}>Подписаться</Button>
                         }
 
                         <div className={s.fullName + ' ' + s.grid}>
@@ -91,3 +94,27 @@ export let Users = (props: PropsType) => {
         </div>
     )
 }
+
+
+export const UserSearhForm: React.FC<{}> = () => {
+
+    const onClick = (values: FormikValues, actions: FormikValues) => {
+        console.log({ term: values });
+        alert(JSON.stringify(values, null, 2));
+        actions.setSubmitting(false);
+    }
+    return (
+        <div>
+            <h3 className={s.formik} >Searh Users</h3>
+            <Formik
+                initialValues={{ term: '' }}
+                onSubmit={onClick}
+            >
+                <Form>
+                    <Field id="term" name="term" placeholder="term" />
+                    <button type="submit">Searh</button>
+                </Form>
+            </Formik>
+        </div>
+    );
+};

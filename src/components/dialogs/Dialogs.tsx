@@ -43,7 +43,7 @@ export const Dialogs = (props: DialogsPropsType)  => {
           <Item key={d.id}>
             <DialogsItem key={d.id} name={d.name} />
           </Item>
-        </Stack>
+        </Stack> 
       </Box>)
   let messegessElements =
     props.messageData.map(m =>

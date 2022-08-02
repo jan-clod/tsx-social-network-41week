@@ -12,7 +12,6 @@ export let reducers = combineReducers({
   UserReducer,
   MusicReducer,
   AuthReducer,
-        
 });
 
 export type AppStateType = ReturnType<typeof reducers>;
