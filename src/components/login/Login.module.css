@@ -1,10 +1,62 @@
-.login{
+.loginBlock {
+  width: 40vw;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   color: aliceblue;
-  margin: 100px 45%;
 }
-.error{
-  color:rgb(212, 86, 86);
+.authorization {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+ /*  background-color: #1977d1; */
+  background: radial-gradient(circle at 120% 50%, aqua, darkblue);
+  padding: 3vw;
+
+  height: 30vh;
+  width: 5vw;
+  min-width: max-content;
+  min-height: max-content;
 }
-.password{
-  color:rgb(9, 111, 254)
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  height: 30vh;
+  width: 20vw;
+  min-width: max-content;
+  min-height: max-content;
+
+  padding: 3vw;
+
+background-color: #2a2a2a
+;
+}
+
+.error {
+  color: rgb(212, 86, 86);
+}
+.password {
+  color: rgb(9, 111, 254);
+}
+h3{
+  margin: 0 ;
+  margin-top: 15px;
+}
+.buttonAuth{
+  margin-top: 20px;
+}
+.textField{
+  width: 20vw;
 }

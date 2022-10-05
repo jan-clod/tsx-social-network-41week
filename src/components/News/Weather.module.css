@@ -1,13 +1,33 @@
-.pogoda{
-    color: aliceblue;
-    border-radius: 5px;
-    background-color: rgb(42, 42, 42);
-    margin-bottom: 1rem;
-    padding: 1rem;
+.pogoda2{
+    background-color: rgb(240, 248, 255);
+    z-index: 3;
 }
-.textField{
-    background-color: aliceblue;
-    max-width: min-content;
-    min-width: 200px;
-    border-radius: 5px;
+.pogoda {
+  background-image: url("https://c.wallhere.com/photos/6f/df/1920x1200_px_forest_nature_road_Trees-645752.jpg!d");
+  background-size: 185%;
+  background-position: -180%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: max-content;
+  padding: 15px;
+
+  border-radius: 8px;
+
+font-size: 1.2rem ;
+z-index: 1;
+}
+
+
+.textField {
+  background-color: rgba(240, 248, 255, 0.461);
+  max-width: min-content;
+  min-width: 200px;
+  border-radius: 5px;
+}
+.buttonStyle {
+  background-color: rgba(10, 26, 41, 0.461);
+  text-align: center;
+  color: aliceblue;
 }

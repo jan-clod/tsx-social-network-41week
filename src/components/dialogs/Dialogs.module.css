@@ -4,6 +4,7 @@
   grid-template-columns: 2fr 10fr;
   z-index: 99;
   height: 80vh;
+  width: 40vw;
 }
 
 .dialogs .You {
@@ -15,6 +16,7 @@
   max-width: max-content;
 }
 .dialogs .I {
+
   background-color: rgb(203, 203, 203);
   border: 2px solid rgb(120, 100, 174);
   border-radius: 10px 10px 0px 10px;

@@ -32,7 +32,7 @@ export const Users = (props: PropsType) => {
     }
 
     return (
-        <div>
+        <div >
             <div className={s.TextField}>
                 <TextField
                     focused

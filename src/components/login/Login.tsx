@@ -1,4 +1,4 @@
-import { Button } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 import axios from 'axios';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import loginForm from '../formValidation/LoginForm';
@@ -60,9 +60,27 @@ export const LoginForm = () => {
 export const Login = () => {
 
     return (
-        <div className={s.login}>
-            <h1>Login Form</h1>
-            <LoginForm />
+        <div className={s.loginBlock}>
+            <div className={` ${s.loginContainer} `}>
+
+                <div className={s.authorization}>
+                    <h1>Authorization</h1>
+                </div>
+
+                <div className={s.loginForm}>
+                    <h3>E-MAIL</h3>
+                    <TextField className={s.textField} id="standard-basic" label="✎" variant="filled" />
+                    <h3>PASSWORD</h3>
+                    <TextField className={s.textField} id="standard-basic" label="✎" variant="filled" />
+                    <div className={s.buttonAuth}>
+                        <Button variant="contained">Authoriz</Button>
+                    </div>
+                </div>
+            </div>
+            {/* <h1>Login Form</h1> */}
+            {/* <LoginForm /> */}
+
+
         </div>
     )
 }

@@ -20,43 +20,43 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export const Navbar = () => {
   return (
-    <Box sx={{ width: '100%' }}>
-      <Stack spacing={2}>
-        <nav className={cl.nav}>
-          <Item>
-            <div className={cl.item}>
-              <NavLink to="/profile"><AccountBoxIcon/> Profile</NavLink>
-            </div>
-          </Item>
-          <Item>
-            <div className={cl.item}>
-              <NavLink to="/dialogs"><CommentIcon/> Message</NavLink>2
-            </div>
-          </Item>
-          <Item>
-            <div className={`${cl.item} ${cl.active}`}>
-              <NavLink to="/users"><AccountBoxIcon/>Users</NavLink>
-            </div>
-          </Item>
-          <Item>
-            <div className={`${cl.item} ${cl.active}`}>
-              <NavLink to="/news"><NewspaperIcon/> News</NavLink>
-            </div>
-          </Item>
-          <Item>
-            <div className={cl.item}>
-              <NavLink to="/music"><LibraryMusicIcon/> Music</NavLink>
-            </div>
-          </Item>
-          <Item>
-            <div className={cl.item}>
-              <NavLink to="/settings" /* className={cl.setting} */>
-              <SettingsIcon/> setting
-              </NavLink>
-            </div>
-          </Item>
-        </nav>
-      </Stack>
-    </Box>
+    <div className={cl.NavBlock}>
+      <Box sx={{ width: '100%' }}>
+        <Stack spacing={2}>
+          <nav className={cl.nav}>
+            <Item>
+              <div className={cl.item}>
+                <NavLink to="/profile"><AccountBoxIcon /> Profile</NavLink>
+              </div>
+            </Item>
+            <Item>
+              <div className={cl.item}>
+                <NavLink to="/dialogs"><CommentIcon /> Message</NavLink>
+              </div>
+            </Item>
+            <Item>
+              <div className={`${cl.item} ${cl.active}`}>
+                <NavLink to="/users"><AccountBoxIcon />Users</NavLink>
+              </div>
+            </Item>
+            <Item>
+              <div className={`${cl.item} ${cl.active}`}>
+                <NavLink to="/news"><NewspaperIcon /> News</NavLink>
+              </div>
+            </Item>
+            <Item>
+              <div className={`${cl.item} ${cl.active}`}>
+                <NavLink to="/music"><LibraryMusicIcon /> Music</NavLink>
+              </div>
+            </Item>
+            <Item>
+              <div className={`${cl.item} ${cl.active}`}>
+                <NavLink to="/settings"> <SettingsIcon /> </NavLink>
+              </div>
+            </Item>
+          </nav>
+        </Stack>
+      </Box>
+    </div>
   );
 }

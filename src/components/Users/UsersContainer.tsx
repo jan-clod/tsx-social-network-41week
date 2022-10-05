@@ -47,7 +47,7 @@ class UsersContainersss extends React.Component<PropsType> {
     }
     render() {
         return (
-            <>
+            <div className={s.usersBlock}>
                 {
                     this.props.isFething
                         ? <Box sx={{ width: '100%' }} className={s.preloader}>
@@ -67,7 +67,7 @@ class UsersContainersss extends React.Component<PropsType> {
 
                 }
 
-            </>
+            </div>
         )
     }
 }

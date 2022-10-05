@@ -23,7 +23,7 @@ type PropsType = {
 export let Users = (props: PropsType) => {
     // let pageCount = Math.ceil(props.totalUserCount / props.pageSize)
     let pages = []
-    for (let i = 1; i <= 37; i++) {
+    for (let i = 1; i <= 21; i++) {
         pages.push(i)
     }
 
@@ -104,7 +104,7 @@ export const UserSearhForm: React.FC<{}> = () => {
         actions.setSubmitting(false);
     }
     return (
-        <div>
+        <div >
             <h3 className={s.formik} >Searh Users</h3>
             <Formik
                 initialValues={{ term: '' }}

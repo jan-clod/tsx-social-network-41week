@@ -1,7 +1,7 @@
 import axios from "axios"
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import  { ChangeEvent,  KeyboardEvent, useState } from "react"
+import { ChangeEvent, KeyboardEvent, useEffect, useState } from "react"
 import s from './Weather.module.css';
 
 let API_key = '2ec4423fb53af22117b897d87dd00576'
@@ -10,12 +10,28 @@ let api = `https://api.openweathermap.org/data/3.0/onecall?lat=33.44&lon=-94.04&
 
 export const Weather = (/* props */) => {
 
-    let [titleName, setTitleName] = useState("Kyiv")
+    useEffect(() => {
+        axios.get(workApi).then(response => {
+            setRes({
+                ...res,
+                main: {
+                    temp: response.data.main.temp,
+                },
+                name: response.data.name
+            })
+            setTitleName(res.name)
+            return response
+        }).catch(error => {
+            alert('error Api');
+        })
+    },[])
+
+    let [titleName, setTitleName] = useState("Pinsk")
     let [res, setRes] = useState({
         main: {
             temp: 0,
         },
-        name: 'Pinsk', 
+        name: 'Pinsk',
     });
     let workApi = `https://api.openweathermap.org/data/2.5/weather?q=${res.name}&appid=2ec4423fb53af22117b897d87dd00576&units=metric`
 
@@ -44,20 +60,25 @@ export const Weather = (/* props */) => {
         e.key === 'Enter' && click()
     }
     return (
-        <div className={s.pogoda}>
-            <h2>Погода:</h2>
-            В  {' '} {titleName} {' '} сейчас{' '} <h3>{'+'+ res.main.temp}</h3><br />
-            <div className={s.textField}>
-                <TextField
-                    id="outlined-basic"
-                    label="Pogoda"
-                    variant="outlined"
-                    autoFocus
-                    color="success"
-                    onChange={change}
-                    onKeyPress={KeyPress} />
+        <div >
+            <h1>Погода</h1>
+            <div className={`  ${s.pogoda2} ${s.pogoda}`}>
+                В  {' '} {titleName} {' '} сейчас{' '} <h2>{'+' + res.main.temp}</h2><br />
+                <div className={s.textField}>
+                    <TextField
+                        id="outlined-basic"
+                        label="Pogoda"
+                        variant="outlined"
+                        autoFocus
+                        color="success"
+                        onChange={change}
+                        onKeyPress={KeyPress} />
+                </div>
+                <div className={s.buttonStyle}>
+                    <Button onClick={click} >Узнать погоду!</Button>
+                </div>
             </div>
-            <Button onClick={click} color="secondary">Узнать погоду!</Button>
+
         </div>
     )
 }

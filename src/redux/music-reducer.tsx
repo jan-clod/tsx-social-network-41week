@@ -25,7 +25,7 @@ let initialState: musicpageType = {
         }
     ]
 
-}
+} 
 
 export const MusicReducer = (MusicData: musicpageType = initialState, action: ActionTypes): musicpageType => {
     switch (action.type) {

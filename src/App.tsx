@@ -9,6 +9,7 @@ import { UsersContainer } from './components/Users/UsersContainer';
 import { MusicContainer } from './components/Music/MusicContainer';
 import { ProfileContainerConnect } from './components/profile/ProfileContainer';
 import { Login } from './components/login/Login';
+import { Setting } from './components/sеttings/Setting';
 
 export const App = (): JSX.Element => {
 
@@ -16,8 +17,9 @@ export const App = (): JSX.Element => {
     <BrowserRouter>
       <div className="app-wrapper">
         <HeaderConteiner />
-        <Navbar />
         <div className='app-wrapper-content'>
+          <Navbar />
+
           <Routes>
 
             <Route path='/dialogs/*' element={
@@ -40,9 +42,13 @@ export const App = (): JSX.Element => {
               <MusicContainer
                 musicpage={store.getState().MusicReducer} />}
             />
+
+            <Route path='/settings' element={<Setting />} />
+
             <Route path='/news' element={<News />} />
 
             <Route path='/login' element={<Login />} />
+
 
           </Routes>
         </div>

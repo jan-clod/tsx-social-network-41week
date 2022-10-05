@@ -68,7 +68,6 @@ export const UserReducer = (state: UserStateType = initialState, action: ActionT
             return { ...state }
     }
 };
-
 //action creators
 export const follow = (userId: string) => {
     return {
@@ -107,7 +106,6 @@ export const toggleIsFetching = (isFething: boolean) => {
     } as const
 }
 
-//thunci 
 export function getUsersThunkCreator(currentPage: number, pageSize: number, term: string) {
     return (dispatch: (param: ActionTypes) => void) => {
         dispatch(toggleIsFetching(true))
