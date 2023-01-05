@@ -2,7 +2,6 @@ import './App.css';
 import { Navbar } from './components/navbar/Navbar';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { News } from './components/News/News';
-import { HeaderConteiner } from './components/header/Header';
 import { DialogsContainer } from './components/dialogs/DialogsContainer';
 import { store } from './redux/redux-store';
 import { UsersContainer } from './components/Users/UsersContainer';
@@ -10,6 +9,7 @@ import { MusicContainer } from './components/Music/MusicContainer';
 import { ProfileContainerConnect } from './components/profile/ProfileContainer';
 import { Login } from './components/login/Login';
 import { Setting } from './components/sеttings/Setting';
+import { HeaderConteiner } from './components/header/HeaderMui';
 
 export const App = (): JSX.Element => {
 
@@ -18,8 +18,7 @@ export const App = (): JSX.Element => {
       <div className="app-wrapper">
         <HeaderConteiner />
         <div className='app-wrapper-content'>
-          <Navbar />
-
+          <div className='navbar'> <Navbar/> </div>
           <Routes>
 
             <Route path='/dialogs/*' element={

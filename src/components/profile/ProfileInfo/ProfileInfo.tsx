@@ -20,17 +20,19 @@ const ProfileInfo = (props: ProfileInfoType) => {
       <div className={s.imgPack}>
         <img alt="description of " src={props.profile[0].photos.large ? props.profile[0].photos.large : ''} />
       </div>
-      <div className={s.nameBlock}>
-        <h2>
-          My Name Neimovich
-          {props.profile[0].name}
-        </h2>
-      </div>
-      <div className={s.infoBlock}>
-        <ProfileStatus status={props.status} />
-        Dата рождения: 07.07.97 {<br />}
-        Город: Пинск`
+      <div>
+        <div className={s.nameBlock}>
+          <h2>
+            My Name Neimovich
+            {props.profile[0].name}
+          </h2>
+        </div>
+        <div className={s.infoBlock}>
+          <ProfileStatus status={props.status} />
+          Dата рождения: 07.07.97 {<br />}
+          Город: Пинск`
 
+        </div>
       </div>
     </div>
   )

@@ -1,19 +1,16 @@
 .ProfileInfoBlock {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
   border-radius: 5px;
   background-color: rgb(42, 42, 42);
-  padding: 1rem;
-  display: grid;
-  grid-template-areas:
-    "img  name"
-    "img  info";
-  grid-template-columns: 1fr 10fr;
-  grid-template-rows: 2fr 5fr;
+
   margin-bottom: 1rem;
+  padding: 10px;
 }
 
 .imgPack {
-  grid-area: img;
-  grid-row: span 2;
   margin: auto;
 }
 
@@ -24,11 +21,21 @@
 .nameBlock {
   border-bottom: 1px solid rgb(215, 217, 255);
   color: rgb(203, 205, 255);
-  grid-area: name;
   margin: 0rem 3rem 0rem 3rem;
 }
 .infoBlock {
-  grid-area: info;
   color: rgb(160, 158, 201);
   margin: 0.5rem 3rem 0rem 3rem; /* t,r,b,l */
+}
+@media (max-width: 1000px) {
+  .ProfileInfoBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    border-radius: 5px;
+    background-color: rgb(42, 42, 42);
+
+    margin-bottom: 1rem;
+  }
 }

@@ -1,7 +1,8 @@
 .app-wrapper {
-  width: 100%;
+  width: 100vw;
   margin: 0 auto;
-/*   display: grid;
+  /*   
+  display: grid;
   grid-template-areas: "h h h" 
                        "n c c ";
   grid-template-rows: 60px 1fr;
@@ -10,37 +11,41 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-
+  flex-wrap: wrap;
 }
 
-.app-wrapper .app-wrapper-content {
-
-/*   grid-area: c;
-  margin:15px 30px 15px 0px;
-  border-radius: 5px; */
-/*   box-shadow: 2px -15px 10px rgb(24, 24, 24); */
-
-}
 .app-wrapper-content {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   margin: 0 auto;
-
 }
-.image.png{
+.image.png {
 }
 .root {
   background-color: rgba(3, 119, 214, 0);
+  padding: 0px;
 }
-a{
+a {
   text-decoration: none;
 }
 .active {
-  text-shadow: 2px 2px 3px rgb(0, 0, 0);
-  border-right: 7px solid rgb(56, 99, 255);
-  background-color: aliceblue;
+  color: rgb(0, 0, 255);
+  font-weight: bold;
+}
 
-  width: 290px;
-  height: 100px;
+@media (max-width: 1000px) {
+  p {
+      display: none;
+  }
+  .item{
+    margin: 8px;
+  }
+  .navbar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+  }
 }
