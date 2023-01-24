@@ -1,17 +1,12 @@
 .app-wrapper {
-  width: 100vw;
-  margin: 0 auto;
-  /*   
-  display: grid;
-  grid-template-areas: "h h h" 
-                       "n c c ";
-  grid-template-rows: 60px 1fr;
-  grid-template-columns: 2fr 10fr;
- */
+
+
   display: flex;
   flex-direction: column;
   justify-content: center;
-  flex-wrap: wrap;
+
+  width: 100vw;
+  margin: 0 auto;
 }
 
 .app-wrapper-content {
