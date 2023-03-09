@@ -23,7 +23,7 @@ type PropsType = {
 export let Users = (props: PropsType) => {
     // let pageCount = Math.ceil(props.totalUserCount / props.pageSize)
     let pages = []
-    for (let i = 1; i <= 21; i++) {
+    for (let i = 1; i <= 23; i++) {
         pages.push(i)
     }
 
@@ -62,18 +62,16 @@ export let Users = (props: PropsType) => {
                         </div>
                         {
                             u.followed
-                                ? <Button
-                                    className={s.users_container_button + ' ' + s.grid}
-                                    size="small"
+                                ? <button
+                                    className={s.users_container_button + ' ' + s.unFollow + ' ' + s.grid}
                                     onClick={() => {
                                         props.unFollowTC(u.id)
-                                    }}>Отписаться</Button>
-                                : <Button
-                                    className={s.users_container_button + ' ' + s.grid}
-                                    variant="outlined"
+                                    }}>Unfollow</button>
+                                : <button
+                                    className={s.users_container_button + ' '+ s.follow + ' ' + s.grid}
                                     onClick={() => {
                                         props.followTC(u.id)
-                                    }}>Подписаться</Button>
+                                    }}>Follow</button>
                         }
 
                         <div className={s.users_container_fullName + ' ' + s.grid}>
@@ -112,7 +110,12 @@ export const UserSearhForm: React.FC<{}> = () => {
                 onSubmit={onClick}
             >
                 <Form > 
-                    <Field id="term" name="term" placeholder="term" className={s.textInput_block_input} />
+                    <Field
+                     id="term"
+                     name="term"
+                     placeholder="term"
+                     className={s.textInput_block_input} 
+                     />
                     <button className={s.textInput_block_button} type="submit">🔍︎</button>
                 </Form>
             </Formik>

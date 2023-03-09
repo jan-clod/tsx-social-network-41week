@@ -1,7 +1,6 @@
 .NavBlock {
   display: flex;
   flex-direction: column;
-  
   width: 8vw;
   height: max-content;
   min-width: max-content;
@@ -14,6 +13,7 @@
   align-items: center;
   font-weight: 900;
   margin: 15px;
+
 }
 .item a {
   text-decoration: none;

@@ -1,8 +1,7 @@
-import { Button, TextField } from "@mui/material";
-import SendIcon from '@mui/icons-material/Send';
 import React, { ChangeEvent, KeyboardEvent, useState } from "react";
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
+import m from "./m.png"
 /* ------------------MUI---------------------- */
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -66,7 +65,7 @@ const MyPosts = (props: MyPostsType) => {
   const addPostHandler = () => {
     props.addPost()
   }
-  const onPostChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+  const onPostChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     let text = e.currentTarget.value
     if (text) {
       props.updateNewPostChange(text)
@@ -88,63 +87,35 @@ const MyPosts = (props: MyPostsType) => {
       />
     ));
 
-
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
-
   return (
-    <div className={s.MyPost}>
+    <div className={s.postBlock}>
 
-      <div className={s.blockInput}>
-        <div className={s.postsBlock}>My Post</div>
-        <div>
-          <TextField
-            onKeyPress={onKeyPressHandler}
-            value={props.newPostText}
-            onChange={onPostChangeHandler}
+      <div className={s.postBlock_addContainer}>
+        <img src={m} alt="" />
+        <input
+          type="text"
+          className={s.postBlock_addContainer}
+          onKeyPress={onKeyPressHandler}
+          value={props.newPostText}
+          placeholder='что нового?'
+          onChange={onPostChangeHandler}
+        />
 
-            label="добавить пост"
-            id="fullWidth"
-            fullWidth
-            focused />
-        </div>
-        <div>
-          <Button
-            onClick={addPostHandler}
-            disabled={disabled}
+        <button
+          onClick={addPostHandler}
+          disabled={disabled}
+        >
+          Add Post
 
-            variant="contained"
-            endIcon={<SendIcon />}>
-            Add Post
-          </Button>
-        </div>
+        </button>
+      </div>
+      <div>
       </div>
 
       <div className={s.publishedPosts}>
-        <Box sx={{ width: '100%' }}>
-          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-              <Tab label="Все записи " {...a11yProps(0)} />
-              <Tab label="Мои записи" {...a11yProps(1)} />
-              <Tab label="Архив записей" {...a11yProps(2)} />
-            </Tabs>
-          </Box>
-          {/*           <TabPanel value={value} index={0}>
-            Item One
-          </TabPanel>
-          <TabPanel value={value} index={1}>
-            Item Two
-          </TabPanel>
-          <TabPanel value={value} index={2}>
-            Item Three
-          </TabPanel> */}
-        </Box>
+        <h2>Моя стена</h2>
 
         {postsElements}
-
       </div>
     </div>
   );

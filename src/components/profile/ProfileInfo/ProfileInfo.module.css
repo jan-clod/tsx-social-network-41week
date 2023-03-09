@@ -8,10 +8,22 @@
   background-color: rgb(255, 255, 255);
 
   margin-bottom: 10px;
-  padding: 10px;
+  z-index: 10000;
 }
-.ProfileInfoBlock img{
+.fon {
+  background-color: rgba(117, 255, 255, 0.367);
+  width: 40vw;
+  height: 100px;
+}
+.fon img {
+  height: 100%;
+  width: 40vw;
+}
+.ProfileInfoBlock img {
+  margin-top: -80px;
+
   width: 100%;
+  border-radius: 50%;
 }
 .nameBlock {
   color: rgb(0, 0, 0);
@@ -20,13 +32,14 @@
 .infoBlock {
   width: 400px;
   color: rgb(0, 0, 0);
+  margin-bottom: 10px;
 }
 @media (max-width: 1000px) {
   .ProfileInfoBlock {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
     border-radius: 5px;
     background-color: rgb(255, 255, 255);
 

@@ -14,7 +14,9 @@ export type authType = {
     isAuth: boolean
     userId?: number | null
 }
-export type ActionTypes = ReturnType<typeof SetUserDataAC> | ReturnType<typeof isAuthAC> 
+export type ActionTypes =
+    | ReturnType<typeof SetUserDataAC>
+    | ReturnType<typeof isAuthAC>
 
 let initialState: authType = {
 
@@ -31,13 +33,13 @@ export const AuthReducer = (state: authType = initialState, action: ActionTypes)
             return {
                 ...state,
                 ...action.data,
-                isAuth: true,
+                isAuth: !state.isAuth,
             }
         }
         case "IS_AUTH_REDIRECT": {
             return {
                 ...state,
-                isAuth: !state.isAuth
+                isAuth: false
             }
         }
         default: {
@@ -63,13 +65,11 @@ export const SetUserDataAC = (
         }
     } as const; //воспринимать объект как константу
 }
-export const isAuthAC = (
-    isAuth: boolean,
-) => {
+export const isAuthAC = () => {
     return {
         type: "IS_AUTH_REDIRECT",
         data: {
-            isAuth,
+            isAuth: false,
         }
     } as const; //воспринимать объект как константу
 }
@@ -79,9 +79,9 @@ export function getAuthUserDataTC() {
         authApi.me()
             .then(response => {
                 if (response.data.resultCode === 0) {
-                    let { id, email, nikName} = response.data.data
-                    dispatch(SetUserDataAC( email, nikName, id))
-                   
+                    let { id, email, nikName } = response.data.data
+                    dispatch(SetUserDataAC(email, nikName, false, id))
+
                 }
             })
     }
@@ -92,18 +92,20 @@ export const logInTC = (email: string, password: string, rememberMe: boolean) =>
         .then(response => {
             if (response.data.resultCode === 0) {
                 dispath(getAuthUserDataTC())
-                dispath(isAuthAC(rememberMe))
             }
         })
 }
 
-export const loginOutTC = () => (dispath: any) => {
+export const loginOutTC = () => {
     authApi.logout()
         .then(response => {
-            alert(JSON.stringify(response.data))
+            console.log(JSON.stringify(response.data))
+            console.log(response.data.resultCode)
+
+            debugger
             if (response.data.resultCode === 0) {
-                dispath(SetUserDataAC( null, null, false, null))
-                dispath(isAuthAC(false))
+                SetUserDataAC(null, null, false, null)
+                isAuthAC()
             }
         })
 }

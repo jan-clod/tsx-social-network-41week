@@ -13,21 +13,18 @@ type PostType = {
 }
 
 
-
-
-
-
-
 const Post = (props: PostType) => {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-  
+
   return (
     <div className={s.Post}>
-      
-      <img src="https://zastavok.net/ts/anime/163639429499.jpg" />
+      <div className={s.img_container}>
+        <img src="https://sun2.beltelecom-by-minsk.userapi.com/impf/c848620/v848620654/8881a/IrzF3m8iyrk.jpg?size=1080x607&quality=96&sign=5e380dd07ab2c15c9bc0f9adb561052b&type=album" />
+
+      </div>
 
       <div className={s.name}>
-        Japonezi Bat'ckovna
+        Timofeev Yan
       </div>
 
       <div className={s.messagePost}>

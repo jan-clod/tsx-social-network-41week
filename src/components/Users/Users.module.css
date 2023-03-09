@@ -92,3 +92,30 @@
   margin: 10px auto;
   width: 100px;
 }
+
+.users_container_button.follow{
+  grid-area: button; 
+  height: 35px;
+  width: 80px;
+  border: 1px solid rgb(255, 183, 0);
+  background-color: rgb(255, 255, 255);
+  font-family: "Poiret One", cursive;
+  font-weight: 900;
+}
+.users_container_button.unFollow{
+  grid-area: button; 
+  height: 35px;
+  border: 1px solid rgb(255, 0, 0);
+  color: red;
+  background-color: rgb(255, 255, 255);
+  font-family: "Poiret One", cursive;
+  font-weight: 700;
+  transition: ease-in-out 0.5s;
+}
+.users_container_button.follow:hover{
+  background-color: rgb(255, 208, 0);
+}
+.users_container_button.unFollow:hover{
+  background-color: rgb(255, 0, 0);
+  color: white;
+}

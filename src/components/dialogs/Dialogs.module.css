@@ -52,7 +52,27 @@
   grid-template-columns: 10fr 3fr;
   padding-left: 40px;
 }
-.myMessagButton {
-  margin: auto auto;
+.myMessag input{
+  height: 30px;
+  border: 0px;
+  border-bottom: 1px solid black;
+  margin-bottom: 5px;
+	background-color: rgba(232, 232, 232, 0.472);
+
+}
+.myMessag input:hover{
+	background-color: rgba(232, 232, 232, 0.878);
+	color: #000000;
+  text-decoration: none;
+}
+.myMessagButton button{
+  margin: 0px  15px;
+  height: 35px;
+  width: 70px;
+  border: 0px;
+  background-color: rgba(255, 255, 255, 0.845);
+  -webkit-box-shadow: 6px 0px 8px -2px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 6px 0px 8px -2px rgba(0, 0, 0, 0.2);
+  box-shadow: 6px 1px 8px -2px rgba(0, 0, 0, 0.2);
   grid-area: b;
 }

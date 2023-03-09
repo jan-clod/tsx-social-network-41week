@@ -1,6 +1,7 @@
 import { Box, CircularProgress } from '@mui/material';
 import { ProfileItemsType, updateStatusTC } from '../../../redux/profile-reducer';
 import s from './ProfileInfo.module.css';
+import png from './20.png';
 import { ProfileStatus } from './ProfileStatus';
 
 
@@ -14,17 +15,20 @@ const ProfileInfo = (props: ProfileInfoType) => {
     return <Box  className={s.preloader}>
       <CircularProgress /></Box>
   } */
-  return (
+  return (<>
+
+    <div className={s.fon}><img src={png} alt={'404'}/></div>
+
     <div className={s.ProfileInfoBlock}>
       <div className={s.imgPack}>
         <img alt="description of " src={props.profile[0].photos.large ? props.profile[0].photos.large : ''} />
       </div>
-      <div className={s. infoBlock}>
+      <div className={s.infoBlock}>
         <div className={s.nameBlock}>
-          <h2>
+          <h1>
             Timofeev Yan
             {props.profile[0].name}
-          </h2>
+          </h1>
         </div>
         <div className={s.info}>
           <ProfileStatus status={props.status} />
@@ -34,6 +38,7 @@ const ProfileInfo = (props: ProfileInfoType) => {
         </div>
       </div>
     </div>
+  </>
   )
 }
 

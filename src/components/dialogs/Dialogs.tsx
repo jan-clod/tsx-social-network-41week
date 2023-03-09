@@ -46,7 +46,7 @@ export const Dialogs = (props: DialogsPropsType) => {
 
   const onClickSendMessage = () => props.onClickSendMessage()
 
-  const onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+  const onNewMessageChange = (e: ChangeEvent<HTMLInputElement>) => {
     let body = e.currentTarget.value
     props.onNewMessageChange(body)
   }
@@ -64,26 +64,15 @@ export const Dialogs = (props: DialogsPropsType) => {
         </div>
         <div>
           <div className={s.myMessag}>
+            <input
+              placeholder="please"
+              value={newMessageBody}
+              onChange={onNewMessageChange}
+              onKeyPress={onKeyPressHandler}
+              type="text" />
 
-            <Box sx={{ width: '80%', maxWidth: '100%', }}>
-              <TextField
-                fullWidth
-                label="pull message"
-                id="fullWidth"
-                placeholder="please"
-                value={newMessageBody}
-                onChange={onNewMessageChange}
-                onKeyPress={onKeyPressHandler}
-              />
-            </Box>
             <div className={s.myMessagButton}>
-              <Stack direction="row" spacing={2}>
-                <Button
-                  variant="contained"
-                  endIcon={<SendIcon />}
-                  onClick={onClickSendMessage}
-                > Send</Button>
-              </Stack>
+              <button onClick={onClickSendMessage}>Send ✈</button>
             </div>
           </div>
 

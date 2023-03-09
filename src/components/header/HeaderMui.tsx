@@ -27,7 +27,7 @@ type PropsType = {
   isAuth: boolean
   login: string | null
 }
-export class HeaderMui extends React.Component<PropsType> {
+export class HeaderHOC extends React.Component<PropsType> {
   componentDidMount = () => {
     this.props.getAuthUserDataTC()
   }
@@ -50,7 +50,7 @@ const mapStateToProps = (state: AppStateType) => ({
   login: state.AuthReducer.login,
 })
 
-export const HeaderConteiner = connect(mapStateToProps, { getAuthUserDataTC })(Header)
+export const HeaderConteiner = connect(mapStateToProps, { getAuthUserDataTC })(HeaderHOC)
 
 /* 
 
