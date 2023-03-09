@@ -11,7 +11,7 @@ import {
     updateStatusTC
 } from "../../redux/profile-reducer"
 import { AppStateType } from "../../redux/redux-store";
-import { useMatch, useParams } from "react-router-dom";
+import { Navigate, useMatch, useParams } from "react-router-dom";
 import { authType } from "../dialogs/DialogsContainer";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
@@ -33,6 +33,8 @@ class ProfileContainers extends React.Component<ProfilePropsType & authType> {
 
     componentDidMount() {
         let userId = this.props.userId;
+        console.log(this.props.isAuth)
+
         if (!userId) {
             userId = 24600;
         }
@@ -41,11 +43,12 @@ class ProfileContainers extends React.Component<ProfilePropsType & authType> {
     }
 
     render = () => {
+        if (!this.props.isAuth) return <Navigate to={"/login"} />
         return (
             <div className={s.ProfileContainer}>
                 <Profile {...this.props} />
             </div>
-            
+
         )
     }
 }

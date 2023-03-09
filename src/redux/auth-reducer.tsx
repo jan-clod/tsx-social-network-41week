@@ -4,25 +4,24 @@ export type trackType = {
     name: string
     preview_url: string
 }
-
 export type musicType = {
     track: trackType,
 }
-
 export type authType = {
-    userId: number | null
+
     email: string | null
     login: string | null
     isAuth: boolean
+    userId?: number | null
 }
-export type ActionTypes = ReturnType<typeof SetUserDataAC>
-
+export type ActionTypes = ReturnType<typeof SetUserDataAC> | ReturnType<typeof isAuthAC> 
 
 let initialState: authType = {
-    userId: null,
+
     email: null,
     login: null,
-    isAuth: true
+    isAuth: false,
+    userId: null,
 }
 
 export const AuthReducer = (state: authType = initialState, action: ActionTypes): authType => {
@@ -32,7 +31,13 @@ export const AuthReducer = (state: authType = initialState, action: ActionTypes)
             return {
                 ...state,
                 ...action.data,
-                isAuth: true
+                isAuth: true,
+            }
+        }
+        case "IS_AUTH_REDIRECT": {
+            return {
+                ...state,
+                isAuth: !state.isAuth
             }
         }
         default: {
@@ -42,18 +47,29 @@ export const AuthReducer = (state: authType = initialState, action: ActionTypes)
     };
 }
 
-
 export const SetUserDataAC = (
-    userId: number | null,
     email: string | null,
-    login: string | null,
+    nicName: string | null,
+    isAuth: boolean,
+    userId?: number | null,
 ) => {
     return {
         type: "SET_USER_DATA",
         data: {
-            userId,
             email,
-            login,
+            nicName,
+            isAuth,
+            userId,
+        }
+    } as const; //воспринимать объект как константу
+}
+export const isAuthAC = (
+    isAuth: boolean,
+) => {
+    return {
+        type: "IS_AUTH_REDIRECT",
+        data: {
+            isAuth,
         }
     } as const; //воспринимать объект как константу
 }
@@ -63,10 +79,31 @@ export function getAuthUserDataTC() {
         authApi.me()
             .then(response => {
                 if (response.data.resultCode === 0) {
-                    let { id, email, login } = response.data.data
-                    dispatch(SetUserDataAC(id, email, login))
-                    console.log(id, email, login);
+                    let { id, email, nikName} = response.data.data
+                    dispatch(SetUserDataAC( email, nikName, id))
+                   
                 }
             })
     }
+}
+
+export const logInTC = (email: string, password: string, rememberMe: boolean) => (dispath: any) => {
+    authApi.login(email, password, rememberMe)
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispath(getAuthUserDataTC())
+                dispath(isAuthAC(rememberMe))
+            }
+        })
+}
+
+export const loginOutTC = () => (dispath: any) => {
+    authApi.logout()
+        .then(response => {
+            alert(JSON.stringify(response.data))
+            if (response.data.resultCode === 0) {
+                dispath(SetUserDataAC( null, null, false, null))
+                dispath(isAuthAC(false))
+            }
+        })
 }

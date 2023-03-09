@@ -1,4 +1,8 @@
-.userBlock {
+.usersBlock {
+  width: 40vw;
+  background-color: rgb(255, 255, 255);
+}
+.users_container {
   display: grid;
   grid-gap: 0.8em;
   grid-template-areas:
@@ -9,67 +13,82 @@
   grid-template-rows: 2rem 2rem 2rem;
   padding: 10px;
   justify-items: start;
-  
+
   border-radius: 5px;
-  background-color: rgb(42, 42, 42);
+  background-color: rgb(250, 250, 250);
   margin-bottom: 1rem;
   padding: 1rem;
 }
+.users_container_blockImg {
+  margin: 1rem;
+}
+
 .grid {
   text-align: center;
   font-size: 30px;
 }
-.blockImg {
-  margin: 1rem;
-}
-.img {
+
+.blockImg_img {
   width: 5rem;
   height: 5rem;
   border-radius: 50%;
   grid-area: img;
 }
-.button {
+.users_container_button {
   grid-area: button;
   font-size: medium;
 }
-.fullName {
+.users_container_fullName {
   font-size: 1.5rem;
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   grid-area: fullName;
 }
-.status {
+.users_container_status {
   font-size: 1rem;
-  color: rgb(182, 187, 194);
+  color: rgb(0, 0, 0);
   grid-area: status;
 }
 .location {
   font-size: 0.5rem;
   border: 1px solid rgb(226, 182, 182);
-  color: rgb(174, 169, 169);
+  color: rgb(0, 0, 0);
   grid-area: location;
 }
-.TextField{
+.textInput_block {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
   
-  border-radius: 5px;
-  background-color: rgb(42, 42, 42);
+  border-radius: 5px;  
   margin-bottom: 1rem;
-  padding: 1rem;
+
 }
-.selectedPage{
+.textInput_block_input {
+  height: 30px;
+  width: 400px;
+  border: 0px;
+  border-bottom: 1px solid black;
+  background-color: rgba(65, 65, 65, 0.071);
+}
+.textInput_block_button {
+  width: 50px;
+  height: 30px;
+  border: 0px;
+  cursor: pointer;
+}
+.textInput_block_button :hover {
+  background-color: aqua;
+}
+.selectedPage {
   color: red;
   padding: 10px;
 }
-.noSelectPage{
-  color: white;
+.noSelectPage {
+  color: rgb(0, 0, 0);
   padding: 10px;
 }
 .preloader {
   margin: 10px auto;
   width: 100px;
-}
-.formik{
-  color: aliceblue;
-}
-.usersBlock{
-  width: 40vw;
 }

@@ -4,13 +4,11 @@ import App from "./App";
 
 import { AppStateType, store } from "./redux/redux-store";
 import { Provider } from 'react-redux';
-export const renderTree = (stor?:AppStateType) => {
+export const renderTree = (stor?: AppStateType) => {
     ReactDOM.render(
-        <React.StrictMode>
-            <Provider store={store}>
-                <App />
-            </Provider>
-        </React.StrictMode>,
+        <Provider store={store}>
+            <App />
+        </Provider>,
         document.getElementById('root')
     )
     console.log('перерисовак render.tsx');

@@ -24,7 +24,7 @@ export const Weather = (/* props */) => {
         }).catch(error => {
             alert('error Api');
         })
-    },[])
+    }, [])
 
     let [titleName, setTitleName] = useState("Pinsk")
     let [res, setRes] = useState({
@@ -60,24 +60,28 @@ export const Weather = (/* props */) => {
         e.key === 'Enter' && click()
     }
     return (
-        <div >
+        <div className={s.weatherBlock}>
             <h1>Погода</h1>
-            <div className={`  ${s.pogoda2} ${s.pogoda}`}>
-                В  {' '} {titleName} {' '} сейчас{' '} <h2>{'+' + res.main.temp}</h2><br />
-                <div className={s.textField}>
-                    <TextField
-                        id="outlined-basic"
-                        label="Pogoda"
-                        variant="outlined"
-                        autoFocus
-                        color="success"
-                        onChange={change}
-                        onKeyPress={KeyPress} />
+            <div className={`  ${s.weatherBlock_container} ${s.pogoda}`}>
+                <div className={s.container}>
+                    В  {' '} {titleName} {' '} сейчас{' '} <h2>{'+' + res.main.temp}</h2><br />
+                    <div className={s.container_textField}>
+                        <TextField
+                            id="outlined-basic"
+                            label="Pogoda"
+                            variant="outlined"
+                            autoFocus
+                            color="success"
+                            onChange={change}
+                            onKeyPress={KeyPress} />
+                    </div>
+                    <div className={s.container_buttonBlock}>
+                        <button className={s.buttonBlock_button} onClick={click} >Узнать погоду!</button>
+                    </div>
                 </div>
-                <div className={s.buttonStyle}>
-                    <Button onClick={click} >Узнать погоду!</Button>
-                </div>
+
             </div>
+
 
         </div>
     )

@@ -1,9 +1,13 @@
-.pogoda{
-    color: aliceblue;
+.newsBlock{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+
+
+    color: rgb(0, 0, 0);
     border-radius: 5px;
-    background-color: rgb(42, 42, 42);
-    margin-bottom: 1rem;
-    padding: 1rem;
+    background-color: rgb(255, 255, 255);
 
     width: 40vw;
 }

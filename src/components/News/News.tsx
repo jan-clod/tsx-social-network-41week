@@ -4,7 +4,8 @@ import { Weather } from "./Weather";
 export const News = () => {
 
     return (
-        <div className={s.pogoda}>
+        <div className={s.newsBlock}>
+            <Weather />
             <Weather />
         </div>
     )

@@ -1,14 +1,13 @@
-.mus {
-  color: aliceblue;
+.musicBlock {
   border-radius: 5px;
-  background-color: rgb(42, 42, 42);
-  margin-bottom: 1rem;
-  padding: 1rem;
+  background-color: rgb(255, 255, 255);
 
   width: 40vw;
 }
-
-a{
-    text-decoration: none;
-    color: aliceblue;
-  }
+.musicBlock_h2{
+  margin-left: 50px;
+}
+.musicBlock_list_item{
+  margin: 30px;
+}
+ 

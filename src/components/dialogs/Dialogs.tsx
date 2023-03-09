@@ -35,16 +35,9 @@ const Item = styled(Paper)(({ theme }: any) => ({
   textAlign: 'left',
 }));
 
-export const Dialogs = (props: DialogsPropsType)  => {
+export const Dialogs = (props: DialogsPropsType) => {
   let dialogsElements =
-    props.dialogsData.map(d =>
-      <Box sx={{ minWidth: '100%' }} key={d.id}>
-        <Stack spacing={2} key={d.id}>
-          <Item key={d.id}>
-            <DialogsItem key={d.id} name={d.name} />
-          </Item>
-        </Stack> 
-      </Box>)
+    props.dialogsData.map(d => <DialogsItem key={d.id} name={d.name} />)
   let messegessElements =
     props.messageData.map(m =>
       <MessagesItem key={m.id} message={m.message} sender={m.sender} />)
@@ -60,13 +53,12 @@ export const Dialogs = (props: DialogsPropsType)  => {
   const onKeyPressHandler = (e: KeyboardEvent<HTMLDivElement>) => {
     e.key === 'Enter' && props.onClickSendMessage()
   }
-  if (!props.isAuth) return <Navigate to={"/login"} />
   return (
-    <nav className={s.dialogs}>
-      <div className={s.dialogsItems}>
+    <main className={s.dialogsBlock}>
+      <section className={s.dialogsItems}>
         {dialogsElements}
-      </div>
-      <div className={s.messages}>
+      </section>
+      <section className={s.messagesBlock}>
         <div className={s.blockMessage}>
           {messegessElements}
         </div>
@@ -96,7 +88,7 @@ export const Dialogs = (props: DialogsPropsType)  => {
           </div>
 
         </div>
-      </div>
-    </nav>
+      </section>
+    </main>
   );
 }; 

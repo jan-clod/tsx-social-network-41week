@@ -1,86 +1,90 @@
-import { Button, TextField } from '@mui/material';
-import axios from 'axios';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
-import loginForm from '../formValidation/LoginForm';
 import s from './Login.module.css';
+import { useFormik } from 'formik';
+import { authType, loginOutTC, logInTC } from '../../redux/auth-reducer';
+import { connect } from 'react-redux';
 
-export const LoginForm = () => {
-    let myLogin = {
-        email: 'Fia.yan@mail.ru',
-        password: '310074ZxC',
-        rememberMe: true
-    }
-
-    const autoriz = () => {
-        axios.post("https://social-network.samuraijs.com/api/1.0/auth/login", {
-            email: myLogin.email,
-            password: myLogin.password,
-            rememberMe: myLogin.rememberMe,
-        }).then(response => console.log(response.data))
-    }
-
-    return (
-        <form>
-            <Formik
-                initialValues={{ email: "", password: "", rememberMe: false }}
-                onSubmit={(values) => {
-
-                    axios.post("https://social-network.samuraijs.com/api/1.0/auth/login", {
-                        email: values.email,
-                        password: values.password,
-                        rememberMe: values.rememberMe,
-                    }).then(response => alert(response.data))
-                    debugger
-                    alert(values)
-                }}
-                validationSchema={loginForm}>
-                {() => (
-                    <Form>
-                        <div>
-                            <Field type={'text'} name={'email'} placeholder={'e-mail'} />
-                        </div>
-                        <ErrorMessage className={s.error} name="email" component="div" />
-                        <div>
-                            <Field className={s.password} type={'password'} name={'password'} placeholder={'password'} />
-                        </div>
-                        <ErrorMessage className={s.error} name="password" component="div" />
-                        <div>
-                            <Field type={'checkbox'} name={'rememberMe'} />
-                            <label htmlFor={'rememberMe'}> remember me </label>
-                        </div>
-
-                        <Button onClick={autoriz} variant="contained" type={'submit'} size="small">Log in</Button>
-                    </Form>
-                )}
-            </Formik>
-        </form>
-    )
+let myLogin = {
+    email: 'Fia.yan@mail.ru',
+    password: '310074ZxC',
+    rememberMe: true
 }
 
-export const Login = () => {
+type propsType = {
+    logInTC: (email: string, password: string, rememberMe: boolean) => void
+    loginOutTC: () => void
+    auth: authType
+}
 
+export const LoginPure = (props: propsType) => {
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: '',
+            rememberMe: false
+        },
+        onSubmit: values => {
+            props.logInTC(values.email, values.password, true)
+        }
+    });
+
+    let click = () => {
+        props.loginOutTC()
+    }
     return (
-        <div className={s.loginBlock}>
-            <div className={` ${s.loginContainer} `}>
+        <div className={s.block}>
+            <div className={s.block_left}><h1>Autarization</h1></div>
+            <form className={s.loginBlock} onSubmit={formik.handleSubmit}>
 
-                <div className={s.authorization}>
-                    <h1>Authorization</h1>
-                </div>
+                <label htmlFor="email"><h2>Welome Back</h2></label>
+                <div className={s.loginBlock_form}>
+                    <input
+                        className={s.form_input}
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder='email'
 
-                <div className={s.loginForm}>
-                    <h3>E-MAIL</h3>
-                    <TextField className={s.textField} id="standard-basic" label="✎" variant="filled" />
-                    <h3>PASSWORD</h3>
-                    <TextField className={s.textField} id="standard-basic" label="✎" variant="filled" />
-                    <div className={s.buttonAuth}>
-                        <Button variant="contained">Authoriz</Button>
+                        onChange={formik.handleChange}
+                        value={formik.values.email}
+                    />
+
+                    <input
+                        className={s.form_input}
+                        id="password"
+                        name="password"
+                        type="password"
+                        placeholder='password'
+
+                        onChange={formik.handleChange}
+                        value={formik.values.password}
+                    />
+                    <div className={s.form_container}>
+                        <input
+                            className={s.form_chekbox}
+                            id="rememberMe"
+                            name="rememberMe"
+                            type="checkbox"
+                            onChange={formik.handleChange}
+                        />
+                        <p> remember me</p>
                     </div>
+
+
+
+
+
+                    <button className={s.form_button} type="submit"><h3>Log In</h3></button>
                 </div>
-            </div>
-            {/* <h1>Login Form</h1> */}
-            {/* <LoginForm /> */}
 
+                {/* <button onClick={click}>out</button> */}
 
+            </form>
         </div>
-    )
-}
+    );
+};
+
+let mapStateToProps = (state: authType) => ({
+    isAuth: state
+})
+
+export const Login = connect(mapStateToProps, { loginOutTC, logInTC })(LoginPure)

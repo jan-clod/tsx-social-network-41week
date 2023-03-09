@@ -1,24 +1,32 @@
-.dialogs {
-  display: grid;
-  grid-template-areas: "a b";
-  grid-template-columns: 2fr 10fr;
+.dialogsBlock {
+  display: flex;
   z-index: 99;
-  height: 80vh;
+  height: max-content;
+  width: 40vw;
+}
+.dialogsItems {
+  width: 200px;
+  background-color: rgb(255, 255, 255);
+  border-right: 1px solid rgba(0, 0, 0, 0.131);
+}
+.messagesBlock{
   width: 40vw;
 }
 
-.dialogs .You {
+.dialog a{
+  display: block;
+  margin: 10px ;
+}
+
+.dialogsBlock .You {
   background-color: rgb(183, 183, 183);
-  border: 1px solid rgb(180, 67, 67);
   border-radius: 10px 10px 10px 0px;
   margin: 10px 0.3em;
   padding: 5px;
   max-width: max-content;
 }
-.dialogs .I {
-
-  background-color: rgb(203, 203, 203);
-  border: 2px solid rgb(120, 100, 174);
+.dialogsBlock .I {
+  background-color: rgb(255, 204, 0);
   border-radius: 10px 10px 0px 10px;
   margin: 10px;
   padding: 5px;
@@ -31,12 +39,12 @@
 }
 
 .blockMessage {
-  background-color: rgb(42, 42, 42);
-  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
   padding: 10px;
+  height: 80vh;
 }
 .myMessag {
-  background-color: rgb(77, 77, 77);
+  background-color: rgb(255, 204, 0);
   padding: 10px 10px;
   border-radius: 0px 0px 5px 0px;
   display: grid;
@@ -47,15 +55,4 @@
 .myMessagButton {
   margin: auto auto;
   grid-area: b;
-}
-
-.dialogsItems {
-  min-width: 170px;
-  border-right: 1px solid rgb(36, 36, 36);
-  grid-area: a;
-  margin-right: 15px;
-}
-
-.dialogsItems a {
-  color: rgb(214, 214, 214);
 }

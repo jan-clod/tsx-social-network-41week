@@ -24,7 +24,7 @@ export const App = (): JSX.Element => {
             <Route path='/dialogs/*' element={
               <DialogsContainer
                 messageData={store.getState().DialogsReducer.messagesData} />}
-            />
+            /> 
 
             <Route path='/profile/*'
               element={
@@ -46,9 +46,9 @@ export const App = (): JSX.Element => {
 
             <Route path='/news' element={<News />} />
 
-            <Route path='/login' element={<Login />} />
+            <Route path='/login' element={<Login auth={store.getState().AuthReducer}/>} />
 
-
+ 
           </Routes>
         </div>
       </div>

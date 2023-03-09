@@ -9,10 +9,10 @@ import  thankMiddleware  from "redux-thunk"
 export let reducers = combineReducers({
   ProfileReducer,
   DialogsReducer,
-  UserReducer,
+  UserReducer, 
   MusicReducer,
   AuthReducer,
-});
+}); 
 
 export type AppStateType = ReturnType<typeof reducers>;
 

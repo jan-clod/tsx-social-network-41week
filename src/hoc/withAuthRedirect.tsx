@@ -6,12 +6,12 @@ export const withAuthRedirect = (Component:typeof React.Component) => {
 
     class RedirectComponent extends React.Component<DialogsPropsType> {
         render() {
-            if (this.props.isAuth) return <Navigate to={"/login"} />
+            console.log('redirect no working')
+            if (this.props.isAuth) return <Navigate to={"/profile"} />
             return <Component {...this.props}/>
         }
     }
     return RedirectComponent
 
 }
-
 

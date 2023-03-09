@@ -2,30 +2,24 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-around;
 
   border-radius: 5px;
-  background-color: rgb(42, 42, 42);
+  background-color: rgb(255, 255, 255);
 
-  margin-bottom: 1rem;
+  margin-bottom: 10px;
   padding: 10px;
 }
-
-.imgPack {
-  margin: auto;
+.ProfileInfoBlock img{
+  width: 100%;
 }
-
-.imgPack img {
-  width: 16vw;
-}
-
 .nameBlock {
-  border-bottom: 1px solid rgb(215, 217, 255);
-  color: rgb(203, 205, 255);
-  margin: 0rem 3rem 0rem 3rem;
+  color: rgb(0, 0, 0);
 }
+
 .infoBlock {
-  color: rgb(160, 158, 201);
-  margin: 0.5rem 3rem 0rem 3rem; /* t,r,b,l */
+  width: 400px;
+  color: rgb(0, 0, 0);
 }
 @media (max-width: 1000px) {
   .ProfileInfoBlock {
@@ -34,8 +28,12 @@
     align-items: center;
     
     border-radius: 5px;
-    background-color: rgb(42, 42, 42);
+    background-color: rgb(255, 255, 255);
 
     margin-bottom: 1rem;
+  }
+  .infoBlock {
+    width: 50vw;
+    color: rgb(0, 0, 0);
   }
 }

@@ -1,12 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Poiret+One&family=Quattrocento+Sans&display=swap");
+
 .app-wrapper {
-
-
   display: flex;
   flex-direction: column;
   justify-content: center;
 
   width: 100vw;
   margin: 0 auto;
+  
+  font-family: "Poiret One", cursive;
 }
 
 .app-wrapper-content {
@@ -15,28 +17,23 @@
   flex-wrap: wrap;
   margin: 0 auto;
 }
-.image.png {
-}
+
 .root {
-  background-color: rgba(3, 119, 214, 0);
+  background-color: rgb(229, 229, 229);
   padding: 0px;
 }
-a {
+a{
   text-decoration: none;
-}
-.active {
-  color: rgb(0, 0, 255);
-  font-weight: bold;
 }
 
 @media (max-width: 1000px) {
   p {
-      display: none;
+    display: none;
   }
-  .item{
+  .item {
     margin: 8px;
   }
-  .navbar{
+  .navbar {
     display: flex;
     flex-direction: row;
     align-items: center;

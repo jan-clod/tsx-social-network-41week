@@ -14,20 +14,19 @@ const ProfileInfo = (props: ProfileInfoType) => {
     return <Box  className={s.preloader}>
       <CircularProgress /></Box>
   } */
-  console.log(props.profile);
   return (
     <div className={s.ProfileInfoBlock}>
       <div className={s.imgPack}>
         <img alt="description of " src={props.profile[0].photos.large ? props.profile[0].photos.large : ''} />
       </div>
-      <div>
+      <div className={s. infoBlock}>
         <div className={s.nameBlock}>
           <h2>
-            My Name Neimovich
+            Timofeev Yan
             {props.profile[0].name}
           </h2>
         </div>
-        <div className={s.infoBlock}>
+        <div className={s.info}>
           <ProfileStatus status={props.status} />
           Dата рождения: 07.07.97 {<br />}
           Город: Пинск`

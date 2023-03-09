@@ -55,24 +55,26 @@ export const Music = (props: musicPropsType) => {
         });
     }
     let musicElem = props.musicpage.items.map(m => (
-        <div key={v1()}>
-            <a
+            <a className={s.musicBlock_list_item}
                 key={v1()}
                 target="_blank"
                 rel="noreferrer"
                 href={m.track.preview_url}
             >
-                {m.track.name} </a>
-        </div>
+                {m.track.name}<br /> </a>
     ))
 
 
 
     return (
-        <div className={s.mus}>
-            <h2>Musics:</h2><br />
-            {musicElem}
-            <button /* onClick={click} */>получить ссылку на песню</button>
+        <div className={s.musicBlock}>
+            <h2 className={s.musicBlock_h2} >Musics:</h2><br />
+            <div className={s.musicBlock_list}>
+                {musicElem}
+            </div>
+            {/* 
+            <button  onClick={click} >получить ссылку на песню</button>
+        */}
         </div>
     )
 }
@@ -154,7 +156,7 @@ export class Music extends React.Component<musicPropsType> {
             <h2>Musics:</h2><br />
             {musicElem}
             <button /* onClick={click} *//* >получить ссылку на песню</button>
-        </div>
-        )
-    }
+</div>
+)
+}
 } */ 
