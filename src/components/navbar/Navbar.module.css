@@ -34,36 +34,35 @@ p{
 }
 
 @media (max-width: 1000px) {
-  p {
-  }
-  .item{
-    margin: 8px;
-  }
-  .boxnav{
-    display: flex;
-    flex-direction: row;
-    align-items:flex-end;
-    background-color: blue;
+  .NavBlock {
+
+    bottom: 0;
+    left: 0;
+
+    height: auto;
+    width: 100vw;
+    min-width: max-content;
+    margin: 0;
+    padding: 0; 
+
+    border-top: 0.5px solid black;
+
+    background-color: rgb(224, 224, 224);
+
+    z-index: 2;
   }
   .nav{
     display: flex;
     flex-direction: row;
     align-items:flex-end;
-  }
-  .NavBlock {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-around;
 
-    height: 60px;
     width: 100vw;
-    min-width: max-content;
-    margin: 1vh 1vw;
-    padding: 0.2rem; 
-    background-color: rgb(42,42,42);
   }
-  .NavBlock2{
-    width: max-content ;
+
+  .item{
+    margin: 8px;
   }
+
+
 }

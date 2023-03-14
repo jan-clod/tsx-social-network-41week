@@ -1,3 +1,8 @@
 .Profile{
     width: 40vw;
 }
+@media (max-width: 1000px) {
+    .Profile{
+        width: 100vw;
+    }
+}

@@ -20,7 +20,12 @@ export const App = (): JSX.Element => {
         <div className='app-wrapper-content'>
           <div className='navbar'> <Navbar/> </div>
           <Routes>
-
+          <Route path='/*'
+              element={
+                <ProfileContainerConnect
+                  profileData={store.getState().ProfileReducer.profile}
+                />}
+            />
             <Route path='/dialogs/*' element={
               <DialogsContainer
                 messageData={store.getState().DialogsReducer.messagesData} />}

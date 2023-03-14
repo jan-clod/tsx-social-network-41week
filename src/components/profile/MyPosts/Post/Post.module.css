@@ -7,7 +7,7 @@
     "img  post"
     "like  like";
   grid-template-columns: 1.2fr 6fr;
-  grid-template-rows: 70px auto 3rem;
+  grid-template-rows: auto ;
   margin: 10px;
   border-bottom: 1px solid rgb(26, 26, 29);
 }
@@ -16,27 +16,26 @@
   width: auto;
   grid-area: img;
   grid-row: span 2;
-} 
-.img_container{
+}
+.img_container {
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-   
+
   height: 100px;
   width: 100px;
   border-radius: 50%;
-
+  grid-row: 1 / span 2;
 }
 
 .name {
   grid-area: name;
   margin-bottom: 1rem;
-  font-size:x-large
-
+  font-size: x-large;
 }
 
-.messagePost{
+.messagePost {
   grid-area: post;
   margin-bottom: 1rem;
   grid-column-start: 2;
@@ -45,4 +44,22 @@
 
 .likes {
   grid-area: like;
+}
+
+@media (max-width: 1000px) {
+  .img_container {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    margin: auto 0;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+  }
+  .likes {
+    grid-area: like;
+    z-index: -0;
+  }
 }
