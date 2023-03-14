@@ -56,6 +56,7 @@ export const Dialogs = (props: DialogsPropsType) => {
   return (
     <main className={s.dialogsBlock}>
       <section className={s.dialogsItems}>
+        
         {dialogsElements}
       </section>
       <section className={s.messagesBlock}>
