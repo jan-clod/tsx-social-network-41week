@@ -22,7 +22,7 @@ let initialState: authType = {
 
     email: null,
     login: null,
-    isAuth: false,
+    isAuth: true,
     userId: null,
 }
 
