@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 import { Button, TextField } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import s from "./Users.module.css";
@@ -15,38 +15,60 @@ type PropsType = {
     isFething: boolean
     follow: (userId: string) => void
     unfollow: (userId: string) => void
-    onPageChanged: (pageNumber: number) => void
+    onPageChanged: (pageNumber: any) => void
     followTC: (userId: string) => void
     unFollowTC: (userId: string) => void
 }
 
 export let Users = (props: PropsType) => {
-    // let pageCount = Math.ceil(props.totalUserCount / props.pageSize)
-    let pages = []
-    for (let i = 1; i <= 23; i++) {
-        pages.push(i)
+    //alert(Math.ceil(props.totalUserCount / props.pageSize)) ← →
+
+    let [pages, setPages] = useState([1, 2, 3, 4, 5])
+    let lastPage = []
+    lastPage.push(Math.ceil(props.totalUserCount / props.pageSize))
+    let forward = () => {
+        let arr = [];
+        for (let i = 0; i < 5; i++) {
+            arr.push(pages[i] + 4)
+
+        }
+        setPages(arr)
+
     }
 
+    let back = () => {
+        if (pages[0] < 5) {
+            setPages([1, 2, 3, 4, 5])
+        } else {
+            let arr = [];
+            for (let i = 0; i < 5; i++) {
+                arr.push(pages[i] - 4)
+            }
+            setPages(arr)
+        }
+    }
     return (
         <div className={s.usersBlock}>
+
             <UserSearhForm />
-            {/* <TextField
-                    focused
-                    fullWidth
-                    label="Поиск пользователей"
-                    id="fullWidth" /> */}
-            <div className={s.users_navigation}>
-                {
-                    pages.map(p => {
-                        return <span
-                            onClick={() => { props.onPageChanged(p) }}
-                            className={
-                                props.currentPage === p
-                                    ? s.selectedPage
-                                    : s.noSelectPage
-                            }>{p}</span>
-                    })
-                }
+
+            <div className={s.users_navigation_bolck}>
+                <div className={s.users_navigation}>
+                    <button onClick={back}>←</button>
+                    {
+                        pages.map(e => {
+                            return <span
+                                onClick={() => { props.onPageChanged(e) }}
+                                className={
+                                    props.currentPage === e
+                                        ? s.selectedPage
+                                        : s.noSelectPage
+                                }>{e}</span>
+                        })
+                    }
+                    <span>{'...' + ' ' + lastPage}</span>
+                    <button onClick={forward}>→</button>
+                </div>
             </div>
             {
                 props.users.map(u => <div key={u.id}>
@@ -68,7 +90,7 @@ export let Users = (props: PropsType) => {
                                         props.unFollowTC(u.id)
                                     }}>Unfollow</button>
                                 : <button
-                                    className={s.users_container_button + ' '+ s.follow + ' ' + s.grid}
+                                    className={s.users_container_button + ' ' + s.follow + ' ' + s.grid}
                                     onClick={() => {
                                         props.followTC(u.id)
                                     }}>Follow</button>
@@ -109,13 +131,13 @@ export const UserSearhForm: React.FC<{}> = () => {
                 initialValues={{ term: '' }}
                 onSubmit={onClick}
             >
-                <Form > 
+                <Form >
                     <Field
-                     id="term"
-                     name="term"
-                     placeholder="term"
-                     className={s.textInput_block_input} 
-                     />
+                        id="term"
+                        name="term"
+                        placeholder="term"
+                        className={s.textInput_block_input}
+                    />
                     <button className={s.textInput_block_button} type="submit">🔍︎</button>
                 </Form>
             </Formik>
