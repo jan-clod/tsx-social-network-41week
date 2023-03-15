@@ -19,6 +19,19 @@
   margin-bottom: 1rem;
   padding: 1rem;
 }
+.users_navigation_bolck{
+  display: flex;
+  justify-content: center;
+}
+.users_navigation{
+  width: max-content;
+}
+.users_navigation button{
+
+}
+
+
+
 .users_container_blockImg {
   margin: 1rem;
 }
@@ -59,10 +72,9 @@
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
-  
-  border-radius: 5px;  
-  margin-bottom: 1rem;
 
+  border-radius: 5px;
+  margin-bottom: 1rem;
 }
 .textInput_block_input {
   height: 30px;
@@ -93,8 +105,8 @@
   width: 100px;
 }
 
-.users_container_button.follow{
-  grid-area: button; 
+.users_container_button.follow {
+  grid-area: button;
   height: 35px;
   width: 80px;
   border: 1px solid rgb(255, 183, 0);
@@ -102,8 +114,8 @@
   font-family: "Poiret One", cursive;
   font-weight: 900;
 }
-.users_container_button.unFollow{
-  grid-area: button; 
+.users_container_button.unFollow {
+  grid-area: button;
   height: 35px;
   border: 1px solid rgb(255, 0, 0);
   color: red;
@@ -112,10 +124,34 @@
   font-weight: 700;
   transition: ease-in-out 0.5s;
 }
-.users_container_button.follow:hover{
+.users_container_button.follow:hover {
   background-color: rgb(255, 208, 0);
 }
-.users_container_button.unFollow:hover{
+.users_container_button.unFollow:hover {
   background-color: rgb(255, 0, 0);
   color: white;
+}
+
+@media (max-width: 1000px) {
+  .usersBlock {
+    width: 100vw;
+  }
+
+  .textInput_block {
+    border-radius: 0;
+    margin-bottom: 1rem;
+  }
+  .textInput_block_input {
+    height: 30px;
+    width: 75vw;
+    border: 0px;
+    border-bottom: 1px solid black;
+    background-color: rgba(65, 65, 65, 0.071);
+  }
+  .textInput_block_button {
+    width: 50px;
+    height: 30px;
+    border: 0px;
+    cursor: pointer;
+  }
 }
